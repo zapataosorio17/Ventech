@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Historial de Compras | VenTech</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body class="bg-light">
+
+<!--================ NAVBAR =================-->
+
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="index.html">
+
+            <img src="/Imagen/logo.png" height="45" alt="VenTech">
+
+        </a>
+
+        <button class="navbar-toggler"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="catalogo.html">Productos</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="carrito.html">Carrito</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="historial.html">
+                        Historial
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!--================ BREADCRUMB =================-->
+
+<div class="container mt-4">
+
+    <nav>
+
+        <ol class="breadcrumb">
+
+            <li class="breadcrumb-item">
+                <a href="index.html">Inicio</a>
+            </li>
+
+            <li class="breadcrumb-item active">
+
+                Historial de Compras
+
+            </li>
+
+        </ol>
+
+    </nav>
+
+</div>
+
+<!--================ HISTORIAL =================-->
+
+<section class="py-4">
+
+<div class="container">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2 class="fw-bold">
+
+Mis Compras
+
+</h2>
+
+<a href="catalogo.html"
+class="btn btn-primary">
+
+<i class="bi bi-bag-plus"></i>
+
+Seguir Comprando
+
+</a>
+
+</div>
+
+<!--================ FILTROS =================-->
+
+<div class="card border-0 shadow-sm mb-4">
+
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-lg-5 mb-3">
+
+<label class="form-label">
+
+Buscar Pedido
+
+</label>
+
+<div class="input-group">
+
+<span class="input-group-text">
+
+<i class="bi bi-search"></i>
+
+</span>
+
+<input
+type="text"
+class="form-control"
+placeholder="Número de pedido">
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-3">
+
+<label class="form-label">
+
+Estado
+
+</label>
+
+<select class="form-select">
+
+<option>Todos</option>
+<option>Entregado</option>
+<option>En camino</option>
+<option>Procesando</option>
+<option>Cancelado</option>
+
+</select>
+
+</div>
+
+<div class="col-lg-4 mb-3">
+
+<label class="form-label">
+
+Fecha
+
+</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!--================ TABLA =================-->
+
+<div class="card border-0 shadow-sm">
+
+<div class="card-header bg-primary text-white">
+
+<h4 class="mb-0">
+
+Historial de Pedidos
+
+</h4>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle mb-0">
+
+<thead class="table-light">
+
+<tr>
+
+<th>Pedido</th>
+
+<th>Fecha</th>
+
+<th>Productos</th>
+
+<th>Total</th>
+
+<th>Estado</th>
+
+<th>Acciones</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>#VT1001</td>
+
+<td>20/06/2026</td>
+
+<td>MacBook Air M3</td>
+
+<td>$6.890.000</td>
+
+<td>
+
+<span class="badge bg-success">
+
+Entregado
+
+</span>
+
+</td>
+
+<td>
+
+<a href="facturas.html"
+class="btn btn-outline-primary btn-sm">
+
+<i class="bi bi-file-earmark-pdf"></i>
+
+Factura
+
+</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>#VT1002</td>
+
+<td>18/06/2026</td>
+
+<td>Sony WH-1000XM5</td>
+
+<td>$1.899.000</td>
+
+<td>
+
+<span class="badge bg-warning text-dark">
+
+En camino
+
+</span>
+
+</td>
+
+<td>
+
+<a href="facturas.html"
+class="btn btn-outline-primary btn-sm">
+
+<i class="bi bi-eye"></i>
+
+Ver
+
+</a>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>#VT1003</td>
+
+<td>10/06/2026</td>
+
+<td>Galaxy Watch 7</td>
+
+<td>$1.199.900</td>
+
+<td>
+
+<span class="badge bg-info">
+
+Procesando
+
+</span>
+
+</td>
+
+<td>
+
+<a href="facturas.html"
+class="btn btn-outline-primary btn-sm">
+
+<i class="bi bi-eye"></i>
+
+Ver
+
+</a>
+
+</td>
+
+</tr>
+
+<!-- Aquí comienza la Parte 2 -->
+                 <tr>
+
+                    <td>#VT1004</td>
+
+                    <td>05/06/2026</td>
+
+                    <td>Logitech MX Master 3S</td>
+
+                    <td>$549.900</td>
+
+                    <td>
+
+                        <span class="badge bg-success">
+
+                            Entregado
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a href="facturas.html"
+                            class="btn btn-outline-primary btn-sm">
+
+                            <i class="bi bi-file-earmark-pdf"></i>
+
+                            Factura
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>#VT1005</td>
+
+                    <td>01/06/2026</td>
+
+                    <td>iPad Air M2</td>
+
+                    <td>$3.699.900</td>
+
+                    <td>
+
+                        <span class="badge bg-danger">
+
+                            Cancelado
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a href="facturas.html"
+                            class="btn btn-outline-secondary btn-sm">
+
+                            <i class="bi bi-eye"></i>
+
+                            Ver
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!--================ PAGINACIÓN =================-->
+
+        <nav class="mt-4">
+
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item disabled">
+
+                    <a class="page-link">
+
+                        Anterior
+
+                    </a>
+
+                </li>
+
+                <li class="page-item active">
+
+                    <a class="page-link">
+
+                        1
+
+                    </a>
+
+                </li>
+
+                <li class="page-item">
+
+                    <a class="page-link">
+
+                        2
+
+                    </a>
+
+                </li>
+
+                <li class="page-item">
+
+                    <a class="page-link">
+
+                        3
+
+                    </a>
+
+                </li>
+
+                <li class="page-item">
+
+                    <a class="page-link">
+
+                        Siguiente
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <!--================ ESTADÍSTICAS =================-->
+
+        <div class="row mt-5">
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="card border-0 shadow-sm text-center">
+
+                    <div class="card-body">
+
+                        <i class="bi bi-cart-check display-4 text-primary"></i>
+
+                        <h2 class="mt-3">
+
+                            15
+
+                        </h2>
+
+                        <p class="text-secondary mb-0">
+
+                            Compras realizadas
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="card border-0 shadow-sm text-center">
+
+                    <div class="card-body">
+
+                        <i class="bi bi-check-circle display-4 text-success"></i>
+
+                        <h2 class="mt-3">
+
+                            13
+
+                        </h2>
+
+                        <p class="text-secondary mb-0">
+
+                            Pedidos entregados
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="card border-0 shadow-sm text-center">
+
+                    <div class="card-body">
+
+                        <i class="bi bi-truck display-4 text-warning"></i>
+
+                        <h2 class="mt-3">
+
+                            1
+
+                        </h2>
+
+                        <p class="text-secondary mb-0">
+
+                            En proceso
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="card border-0 shadow-sm text-center">
+
+                    <div class="card-body">
+
+                        <i class="bi bi-cash-coin display-4 text-info"></i>
+
+                        <h2 class="mt-3">
+
+                            $14.2M
+
+                        </h2>
+
+                        <p class="text-secondary mb-0">
+
+                            Total invertido
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+ <!--================ PRODUCTOS RECOMENDADOS =================-->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <h2 class="fw-bold mb-5">
+
+            Vuelve a comprar
+
+        </h2>
+
+        <div class="row g-4">
+
+            <!-- Producto 1 -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <img src="img/productos/macbook.png"
+                        class="card-img-top p-4"
+                        alt="MacBook">
+
+                    <div class="card-body">
+
+                        <small class="text-primary">Apple</small>
+
+                        <h5 class="mt-2">
+
+                            MacBook Air M3
+
+                        </h5>
+
+                        <p class="text-secondary small">
+
+                            16GB • 512GB SSD
+
+                        </p>
+
+                        <h4 class="text-primary fw-bold">
+
+                            $6.890.000
+
+                        </h4>
+
+                    </div>
+
+                    <div class="card-footer bg-white border-0">
+
+                        <a href="producto.html"
+                            class="btn btn-primary w-100">
+
+                            Comprar nuevamente
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Producto 2 -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <img src="img/productos/s24.png"
+                        class="card-img-top p-4">
+
+                    <div class="card-body">
+
+                        <small class="text-primary">Samsung</small>
+
+                        <h5>
+
+                            Galaxy S24 Ultra
+
+                        </h5>
+
+                        <p class="text-secondary small">
+
+                            256GB
+
+                        </p>
+
+                        <h4 class="text-primary fw-bold">
+
+                            $4.799.900
+
+                        </h4>
+
+                    </div>
+
+                    <div class="card-footer bg-white border-0">
+
+                        <a href="producto.html"
+                            class="btn btn-primary w-100">
+
+                            Comprar nuevamente
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Producto 3 -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <img src="img/productos/sony.png"
+                        class="card-img-top p-4">
+
+                    <div class="card-body">
+
+                        <small class="text-primary">
+
+                            Sony
+
+                        </small>
+
+                        <h5>
+
+                            WH-1000XM5
+
+                        </h5>
+
+                        <p class="text-secondary small">
+
+                            Cancelación de ruido
+
+                        </p>
+
+                        <h4 class="text-primary fw-bold">
+
+                            $1.899.000
+
+                        </h4>
+
+                    </div>
+
+                    <div class="card-footer bg-white border-0">
+
+                        <a href="producto.html"
+                            class="btn btn-primary w-100">
+
+                            Comprar nuevamente
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Producto 4 -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <img src="img/productos/mouse.png"
+                        class="card-img-top p-4">
+
+                    <div class="card-body">
+
+                        <small class="text-primary">
+
+                            Logitech
+
+                        </small>
+
+                        <h5>
+
+                            MX Master 3S
+
+                        </h5>
+
+                        <p class="text-secondary small">
+
+                            Mouse inalámbrico
+
+                        </p>
+
+                        <h4 class="text-primary fw-bold">
+
+                            $549.900
+
+                        </h4>
+
+                    </div>
+
+                    <div class="card-footer bg-white border-0">
+
+                        <a href="producto.html"
+                            class="btn btn-primary w-100">
+
+                            Comprar nuevamente
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--================ FOOTER =================-->
+
+<footer class="bg-dark text-white pt-5 pb-3">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-4">
+
+                <img src="/Imagen/logo.png"
+                    height="55"
+                    class="mb-3"
+                    alt="VenTech">
+
+                <p>
+
+                    VenTech ofrece productos tecnológicos de alta calidad,
+                    atención personalizada y envíos a todo el país.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <h5>Empresa</h5>
+
+                <ul class="list-unstyled">
+
+                    <li><a href="index.html" class="text-white text-decoration-none">Inicio</a></li>
+                    <li><a href="catalogo.html" class="text-white text-decoration-none">Productos</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Nosotros</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Contacto</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <h5>Mi Cuenta</h5>
+
+                <ul class="list-unstyled">
+
+                    <li><a href="historial.html" class="text-white text-decoration-none">Historial</a></li>
+                    <li><a href="facturas.html" class="text-white text-decoration-none">Facturas</a></li>
+                    <li><a href="carrito.html" class="text-white text-decoration-none">Carrito</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Perfil</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <h5>Contacto</h5>
+
+                <p class="mb-2">
+
+                    📍 Medellín - Colombia
+
+                </p>
+
+                <p class="mb-2">
+
+                    📧 contacto@ventech.com
+
+                </p>
+
+                <p>
+
+                    📞 +57 3145362654
+
+                </p>
+
+                <div class="fs-3">
+
+                    <a href="#" class="text-white me-3">
+
+                        <i class="bi bi-facebook"></i>
+
+                    </a>
+
+                    <a href="#" class="text-white me-3">
+
+                        <i class="bi bi-instagram"></i>
+
+                    </a>
+
+                    <a href="#" class="text-white me-3">
+
+                        <i class="bi bi-youtube"></i>
+
+                    </a>
+
+                    <a href="#" class="text-white">
+
+                        <i class="bi bi-linkedin"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="border-secondary">
+
+        <div class="text-center">
+
+            © 2026 <strong>VenTech</strong>. Todos los derechos reservados.
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript -->
+
+<script src="/JS/historial.js"></script>
+
+</body>
+
+</html>

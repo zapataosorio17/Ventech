@@ -1,0 +1,1771 @@
+/*=====================================================
+                VENTECH ADMIN
+                dashboard.css
+======================================================*/
+
+/*================ IMPORTAR FUENTE =================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*================ VARIABLES =================*/
+
+:root{
+
+    --primary:#0d6efd;
+    --secondary:#6c757d;
+    --success:#198754;
+    --danger:#dc3545;
+    --warning:#ffc107;
+    --info:#0dcaf0;
+
+    --dark:#212529;
+    --sidebar:#1e293b;
+    --sidebarHover:#334155;
+
+    --light:#f8fafc;
+    --white:#ffffff;
+
+    --border:#e5e7eb;
+
+    --radius:14px;
+
+    --shadow:0 10px 25px rgba(0,0,0,.08);
+
+    --transition:.3s ease;
+
+}
+
+/*================ RESET =================*/
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f4f6fb;
+
+    color:#333;
+
+    overflow-x:hidden;
+
+}
+
+/*================ LINKS =================*/
+
+a{
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+a:hover{
+
+    text-decoration:none;
+
+}
+
+/*================ SCROLL =================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#ececec;
+
+}
+
+/*================ SIDEBAR =================*/
+
+.sidebar{
+
+    width:260px;
+
+    min-height:100vh;
+
+    background:var(--sidebar);
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    padding:20px 0;
+
+    box-shadow:var(--shadow);
+
+    z-index:1000;
+
+}
+
+.sidebar-logo{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.sidebar-logo img{
+
+    width:90px;
+
+}
+
+.sidebar-logo h3{
+
+    color:#fff;
+
+    margin-top:15px;
+
+    font-weight:700;
+
+}
+
+.sidebar-menu{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.sidebar-menu li{
+
+    margin:8px 15px;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    color:#dbe4ee;
+
+    font-weight:500;
+
+}
+
+.sidebar-menu a i{
+
+    font-size:20px;
+
+    margin-right:12px;
+
+}
+
+.sidebar-menu a:hover{
+
+    background:var(--sidebarHover);
+
+    color:#fff;
+
+}
+
+.sidebar-menu .active{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/*================ CONTENIDO =================*/
+
+.main-content{
+
+    margin-left:260px;
+
+    padding:30px;
+
+}
+
+/*================ NAVBAR =================*/
+
+.topbar{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:18px 25px;
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.topbar-title h2{
+
+    font-weight:700;
+
+    margin-bottom:4px;
+
+}
+
+.topbar-title p{
+
+    color:#777;
+
+    margin:0;
+
+}
+
+.topbar-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.topbar-user img{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+}
+
+.topbar-user span{
+
+    font-weight:600;
+
+}
+
+/*================ TARJETAS =================*/
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.card-header{
+
+    background:#fff;
+
+    border-bottom:1px solid var(--border);
+
+    font-weight:600;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+/*================ TARJETAS KPI =================*/
+
+.kpi-card{
+
+    text-align:center;
+
+}
+
+.kpi-card i{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+    color:var(--primary);
+
+}
+
+.kpi-card h2{
+
+    font-weight:700;
+
+    margin-bottom:5px;
+
+}
+
+.kpi-card p{
+
+    color:#777;
+
+}
+
+/*================ BOTONES =================*/
+
+.btn{
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    border:none;
+
+}
+
+.btn-success{
+
+    border:none;
+
+}
+
+.btn-danger{
+
+    border:none;
+
+}
+
+.btn-warning{
+
+    border:none;
+
+}
+
+/*================ TABLAS =================*/
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table th{
+
+    background:#f8f9fa;
+
+    font-weight:600;
+
+    border-bottom:2px solid var(--border);
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#f7fbff;
+
+}
+
+/*================ BADGES =================*/
+
+.badge{
+
+    border-radius:30px;
+
+    padding:8px 14px;
+
+    font-size:12px;
+
+}
+
+/*================ FORMULARIOS =================*/
+
+.form-control,
+
+.form-select{
+
+    border-radius:10px;
+
+    padding:12px;
+
+}
+
+.form-control:focus,
+
+.form-select:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:none;
+
+}
+
+/*================ ICONOS =================*/
+
+.icon-circle{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(13,110,253,.08);
+
+}
+
+.icon-circle i{
+
+    font-size:28px;
+
+    color:var(--primary);
+
+}
+
+/*================ FIN PARTE 1 =================*/
+/*=====================================================
+                PRODUCTOS
+======================================================*/
+
+.product-card{
+
+    border-radius:18px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:var(--shadow);
+    transition:.3s;
+
+}
+
+.product-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.product-card img{
+
+    width:100%;
+    height:220px;
+    object-fit:cover;
+
+}
+
+.product-body{
+
+    padding:20px;
+
+}
+
+.product-title{
+
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:10px;
+
+}
+
+.product-price{
+
+    color:var(--primary);
+    font-size:24px;
+    font-weight:700;
+
+}
+
+.product-stock{
+
+    color:#6c757d;
+    font-size:14px;
+
+}
+
+/*=====================================================
+                INVENTARIO
+======================================================*/
+
+.inventory-card{
+
+    border-left:5px solid var(--primary);
+
+}
+
+.stock-success{
+
+    color:var(--success);
+    font-weight:600;
+
+}
+
+.stock-warning{
+
+    color:#d39e00;
+    font-weight:600;
+
+}
+
+.stock-danger{
+
+    color:var(--danger);
+    font-weight:600;
+
+}
+
+.progress{
+
+    height:10px;
+    border-radius:20px;
+    overflow:hidden;
+
+}
+
+.progress-bar{
+
+    border-radius:20px;
+
+}
+
+/*=====================================================
+                VENTAS
+======================================================*/
+
+.sale-card{
+
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:var(--shadow);
+
+}
+
+.sale-total{
+
+    font-size:32px;
+    color:var(--success);
+    font-weight:700;
+
+}
+
+.sale-date{
+
+    color:#888;
+    font-size:14px;
+
+}
+
+/*=====================================================
+                FILTROS
+======================================================*/
+
+.filter-box{
+
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:var(--shadow);
+    margin-bottom:25px;
+
+}
+
+.filter-box .form-control,
+.filter-box .form-select{
+
+    margin-bottom:15px;
+
+}
+
+/*=====================================================
+                BUSCADOR
+======================================================*/
+
+.search-box{
+
+    position:relative;
+
+}
+
+.search-box i{
+
+    position:absolute;
+    top:14px;
+    left:15px;
+    color:#999;
+
+}
+
+.search-box input{
+
+    padding-left:45px;
+
+}
+
+/*=====================================================
+                MODALES
+======================================================*/
+
+.modal-content{
+
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+
+}
+
+.modal-header{
+
+    border-bottom:none;
+
+}
+
+.modal-footer{
+
+    border-top:none;
+
+}
+
+.modal-title{
+
+    font-weight:700;
+
+}
+
+/*=====================================================
+                TABLAS RESPONSIVAS
+======================================================*/
+
+.table-responsive{
+
+    border-radius:15px;
+
+}
+
+/*=====================================================
+                ACCIONES
+======================================================*/
+
+.action-btn{
+
+    width:38px;
+    height:38px;
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:8px;
+    margin-right:5px;
+    transition:.3s;
+
+}
+
+.action-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/*=====================================================
+                ALERTAS
+======================================================*/
+
+.alert{
+
+    border:none;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+
+}
+
+.alert-success{
+
+    background:#d1e7dd;
+
+}
+
+.alert-warning{
+
+    background:#fff3cd;
+
+}
+
+.alert-danger{
+
+    background:#f8d7da;
+
+}
+
+.alert-info{
+
+    background:#cff4fc;
+
+}
+
+/*=====================================================
+                ESTADÍSTICAS
+======================================================*/
+
+.stats-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    box-shadow:var(--shadow);
+
+}
+
+.stats-card h2{
+
+    font-size:38px;
+    font-weight:700;
+
+}
+
+.stats-card p{
+
+    color:#777;
+    margin-top:8px;
+
+}
+
+.stats-card i{
+
+    font-size:42px;
+    color:var(--primary);
+    margin-bottom:15px;
+
+}
+
+/*=====================================================
+                TIMELINE
+======================================================*/
+
+.timeline{
+
+    position:relative;
+    padding-left:30px;
+
+}
+
+.timeline::before{
+
+    content:"";
+    position:absolute;
+    left:8px;
+    top:0;
+    width:3px;
+    height:100%;
+    background:#dee2e6;
+
+}
+
+.timeline-item{
+
+    position:relative;
+    margin-bottom:30px;
+
+}
+
+.timeline-item::before{
+
+    content:"";
+    position:absolute;
+    left:-26px;
+    top:5px;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    background:var(--primary);
+
+}
+
+/*=====================================================
+                AVATAR
+======================================================*/
+
+.avatar{
+
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+
+}
+
+.avatar-lg{
+
+    width:80px;
+    height:80px;
+
+}
+
+/*=====================================================
+                TARJETAS RESUMEN
+======================================================*/
+
+.summary-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:var(--shadow);
+    transition:.3s;
+
+}
+
+.summary-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.summary-card h5{
+
+    font-weight:600;
+
+}
+
+.summary-card span{
+
+    color:#777;
+
+}
+
+/*=====================================================
+                FIN PARTE 2
+======================================================*/
+/*=====================================================
+                USUARIOS
+======================================================*/
+
+.user-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:var(--shadow);
+    transition:.3s;
+
+}
+
+.user-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.user-avatar{
+
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #f1f5f9;
+    margin:auto;
+    display:block;
+
+}
+
+.user-name{
+
+    text-align:center;
+    font-size:20px;
+    font-weight:700;
+    margin-top:15px;
+
+}
+
+.user-role{
+
+    text-align:center;
+    color:#6c757d;
+    margin-bottom:20px;
+
+}
+
+.user-info{
+
+    list-style:none;
+    padding:0;
+    margin:0;
+
+}
+
+.user-info li{
+
+    padding:10px 0;
+    border-bottom:1px solid var(--border);
+
+}
+
+/*=====================================================
+                REPORTES
+======================================================*/
+
+.report-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:var(--shadow);
+
+}
+
+.report-title{
+
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:20px;
+
+}
+
+.report-value{
+
+    font-size:36px;
+    color:var(--primary);
+    font-weight:700;
+
+}
+
+/*=====================================================
+                CHART.JS
+======================================================*/
+
+.chart-container{
+
+    position:relative;
+    width:100%;
+    min-height:350px;
+
+}
+
+.chart-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:var(--shadow);
+
+}
+
+/*=====================================================
+                CONFIGURACIÓN
+======================================================*/
+
+.settings-group{
+
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    margin-bottom:25px;
+    box-shadow:var(--shadow);
+
+}
+
+.settings-group h4{
+
+    margin-bottom:25px;
+    font-weight:700;
+
+}
+
+.settings-group label{
+
+    font-weight:500;
+    margin-bottom:8px;
+
+}
+
+/*=====================================================
+                SWITCHES
+======================================================*/
+
+.form-check-input{
+
+    width:50px;
+    height:25px;
+
+}
+
+.form-check-input:checked{
+
+    background-color:var(--primary);
+    border-color:var(--primary);
+
+}
+
+/*=====================================================
+                PAGINACIÓN
+======================================================*/
+
+.pagination{
+
+    margin-top:35px;
+
+}
+
+.pagination .page-link{
+
+    color:var(--primary);
+    border-radius:8px;
+    margin:0 4px;
+
+}
+
+.pagination .active .page-link{
+
+    background:var(--primary);
+    border-color:var(--primary);
+
+}
+
+/*=====================================================
+                NOTIFICACIONES
+======================================================*/
+
+.notification{
+
+    display:flex;
+    align-items:center;
+    padding:18px;
+    border-radius:12px;
+    background:#fff;
+    margin-bottom:15px;
+    box-shadow:var(--shadow);
+
+}
+
+.notification i{
+
+    font-size:24px;
+    margin-right:15px;
+    color:var(--primary);
+
+}
+
+.notification strong{
+
+    display:block;
+
+}
+
+/*=====================================================
+                BACKUP
+======================================================*/
+
+.backup-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:var(--shadow);
+
+}
+
+.backup-status{
+
+    font-weight:600;
+    color:var(--success);
+
+}
+
+/*=====================================================
+                KPIs
+======================================================*/
+
+.kpi-box{
+
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    box-shadow:var(--shadow);
+
+}
+
+.kpi-box h1{
+
+    font-size:42px;
+    color:var(--primary);
+    font-weight:700;
+
+}
+
+.kpi-box p{
+
+    color:#6c757d;
+
+}
+
+/*=====================================================
+                PROGRESS
+======================================================*/
+
+.progress{
+
+    height:12px;
+    border-radius:20px;
+
+}
+
+.progress-bar{
+
+    border-radius:20px;
+
+}
+
+/*=====================================================
+                LIST GROUP
+======================================================*/
+
+.list-group{
+
+    border-radius:15px;
+    overflow:hidden;
+
+}
+
+.list-group-item{
+
+    padding:16px 20px;
+    border-color:#edf2f7;
+
+}
+
+/*=====================================================
+                ACORDEÓN
+======================================================*/
+
+.accordion-item{
+
+    border:none;
+    margin-bottom:10px;
+    border-radius:12px;
+    overflow:hidden;
+
+}
+
+.accordion-button{
+
+    font-weight:600;
+
+}
+
+.accordion-button:not(.collapsed){
+
+    background:#eef5ff;
+    color:var(--primary);
+
+}
+
+/*=====================================================
+                ESTADOS
+======================================================*/
+
+.status-online{
+
+    color:var(--success);
+    font-weight:600;
+
+}
+
+.status-offline{
+
+    color:var(--danger);
+    font-weight:600;
+
+}
+
+.status-pending{
+
+    color:#d39e00;
+    font-weight:600;
+
+}
+
+/*=====================================================
+                TOOLTIP
+======================================================*/
+
+.tooltip-inner{
+
+    border-radius:8px;
+    font-size:13px;
+
+}
+
+/*=====================================================
+                DROPDOWN
+======================================================*/
+
+.dropdown-menu{
+
+    border:none;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+
+}
+
+.dropdown-item{
+
+    padding:10px 18px;
+
+}
+
+.dropdown-item:hover{
+
+    background:#eef5ff;
+
+}
+
+/*=====================================================
+                FIN PARTE 3
+======================================================*/
+/*=====================================================
+                FOOTER
+======================================================*/
+
+footer{
+
+    background:#ffffff;
+    border-top:1px solid var(--border);
+    padding:20px 30px;
+    margin-top:40px;
+
+}
+
+footer span{
+
+    color:#6c757d;
+    font-size:14px;
+
+}
+
+/*=====================================================
+                LOADER
+======================================================*/
+
+.loader{
+
+    width:60px;
+    height:60px;
+    border:6px solid #e9ecef;
+    border-top:6px solid var(--primary);
+    border-radius:50%;
+    animation:dashboardSpin 1s linear infinite;
+    margin:auto;
+
+}
+
+@keyframes dashboardSpin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*=====================================================
+                BOTÓN VOLVER ARRIBA
+======================================================*/
+
+#btnTop{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    box-shadow:var(--shadow);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:999;
+
+}
+
+#btnTop.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+#btnTop:hover{
+
+    background:#0b5ed7;
+
+}
+
+/*=====================================================
+                SCROLL PERSONALIZADO
+======================================================*/
+
+.custom-scroll{
+
+    max-height:400px;
+
+    overflow-y:auto;
+
+}
+
+.custom-scroll::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.custom-scroll::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+
+/*=====================================================
+                SOMBRAS
+======================================================*/
+
+.shadow-sm-custom{
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.shadow-md-custom{
+
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+
+}
+
+.shadow-lg-custom{
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+/*=====================================================
+                BORDES
+======================================================*/
+
+.radius-sm{
+
+    border-radius:8px;
+
+}
+
+.radius-md{
+
+    border-radius:14px;
+
+}
+
+.radius-lg{
+
+    border-radius:20px;
+
+}
+
+/*=====================================================
+                FONDOS
+======================================================*/
+
+.bg-primary-soft{
+
+    background:rgba(13,110,253,.08);
+
+}
+
+.bg-success-soft{
+
+    background:rgba(25,135,84,.08);
+
+}
+
+.bg-warning-soft{
+
+    background:rgba(255,193,7,.15);
+
+}
+
+.bg-danger-soft{
+
+    background:rgba(220,53,69,.08);
+
+}
+
+.bg-info-soft{
+
+    background:rgba(13,202,240,.10);
+
+}
+
+/*=====================================================
+                TEXTO
+======================================================*/
+
+.text-small{
+
+    font-size:13px;
+
+}
+
+.text-medium{
+
+    font-size:16px;
+
+}
+
+.text-large{
+
+    font-size:22px;
+
+}
+
+.fw-600{
+
+    font-weight:600;
+
+}
+
+.fw-700{
+
+    font-weight:700;
+
+}
+
+/*=====================================================
+                CURSOR
+======================================================*/
+
+.pointer{
+
+    cursor:pointer;
+
+}
+
+/*=====================================================
+                TRANSICIONES
+======================================================*/
+
+.transition{
+
+    transition:.3s;
+
+}
+
+/*=====================================================
+                ANIMACIONES
+======================================================*/
+
+.fade-up{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.zoom-in{
+
+    animation:zoomIn .5s ease;
+
+}
+
+@keyframes zoomIn{
+
+    from{
+
+        transform:scale(.9);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+.slide-left{
+
+    animation:slideLeft .6s ease;
+
+}
+
+@keyframes slideLeft{
+
+    from{
+
+        transform:translateX(-30px);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:translateX(0);
+
+        opacity:1;
+
+    }
+
+}
+
+.slide-right{
+
+    animation:slideRight .6s ease;
+
+}
+
+@keyframes slideRight{
+
+    from{
+
+        transform:translateX(30px);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:translateX(0);
+
+        opacity:1;
+
+    }
+
+}
+
+/*=====================================================
+                RESPONSIVE BÁSICO
+======================================================*/
+
+@media(max-width:992px){
+
+.sidebar{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:auto;
+
+}
+
+.main-content{
+
+    margin-left:0;
+
+    padding:20px;
+
+}
+
+.topbar{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.card-body{
+
+    padding:18px;
+
+}
+
+.table{
+
+    font-size:14px;
+
+}
+
+.btn{
+
+    width:100%;
+
+    margin-bottom:10px;
+
+}
+
+.kpi-card h2{
+
+    font-size:28px;
+
+}
+
+}
+
+/*=====================================================
+                UTILIDADES
+======================================================*/
+
+.mt-30{
+
+    margin-top:30px;
+
+}
+
+.mb-30{
+
+    margin-bottom:30px;
+
+}
+
+.py-30{
+
+    padding-top:30px;
+
+    padding-bottom:30px;
+
+}
+
+.d-center{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.w-100{
+
+    width:100%;
+
+}
+
+.h-100{
+
+    height:100%;
+
+}
+
+/*=====================================================
+                FIN DEL ARCHIVO
+======================================================*/

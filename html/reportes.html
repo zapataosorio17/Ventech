@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Reportes | VenTech Admin</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+        rel="stylesheet">
+
+    <!-- Google Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="/Style/estilos.css">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container-fluid">
+
+<div class="row">
+
+<!--================ SIDEBAR =================-->
+
+<nav class="col-lg-2 d-lg-block bg-dark vh-100 p-0">
+
+<div class="position-sticky">
+
+<div class="text-center py-4">
+
+<img src="/Imagen/logo.png"
+height="70"
+class="mb-3">
+
+<h4 class="text-white">
+
+VenTech
+
+</h4>
+
+</div>
+
+<hr class="text-secondary">
+
+<ul class="nav flex-column">
+
+<li class="nav-item">
+
+<a class="nav-link text-white px-4 py-3"
+href="dashboard.html">
+
+<i class="bi bi-speedometer2 me-2"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link text-white px-4 py-3"
+href="productos.html">
+
+<i class="bi bi-box-seam me-2"></i>
+
+Productos
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link text-white px-4 py-3"
+href="ventas.html">
+
+<i class="bi bi-cart-check me-2"></i>
+
+Ventas
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link text-white px-4 py-3"
+href="inventario.html">
+
+<i class="bi bi-boxes me-2"></i>
+
+Inventario
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link active text-white px-4 py-3"
+href="reportes.html">
+
+<i class="bi bi-bar-chart-line me-2"></i>
+
+Reportes
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link text-white px-4 py-3"
+href="configuracion.html">
+
+<i class="bi bi-gear me-2"></i>
+
+Configuración
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link text-danger px-4 py-3"
+href="login.html">
+
+<i class="bi bi-box-arrow-right me-2"></i>
+
+Cerrar Sesión
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+</nav>
+
+<!--================ CONTENIDO =================-->
+
+<main class="col-lg-10 px-4">
+
+<div class="d-flex justify-content-between align-items-center py-4">
+
+<div>
+
+<h2 class="fw-bold">
+
+Reportes y Estadísticas
+
+</h2>
+
+<p class="text-secondary">
+
+Consulta el comportamiento de las ventas, clientes e inventario.
+
+</p>
+
+</div>
+
+<div>
+
+<button class="btn btn-success me-2">
+
+<i class="bi bi-file-earmark-excel"></i>
+
+Exportar Excel
+
+</button>
+
+<button class="btn btn-danger">
+
+<i class="bi bi-file-earmark-pdf"></i>
+
+Exportar PDF
+
+</button>
+
+</div>
+
+</div>
+
+<!--================ TARJETAS =================-->
+
+<div class="row g-4 mb-4">
+
+<div class="col-lg-3">
+
+<div class="card border-0 shadow-sm">
+
+<div class="card-body">
+
+<h6 class="text-secondary">
+
+Ventas Totales
+
+</h6>
+
+<h2>
+
+$1.245M
+
+</h2>
+
+<p class="text-success">
+
++12% este mes
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card border-0 shadow-sm">
+
+<div class="card-body">
+
+<h6 class="text-secondary">
+
+Pedidos
+
+</h6>
+
+<h2>
+
+3.458
+
+</h2>
+
+<p class="text-primary">
+
+Últimos 12 meses
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card border-0 shadow-sm">
+
+<div class="card-body">
+
+<h6 class="text-secondary">
+
+Clientes
+
+</h6>
+
+<h2>
+
+1.528
+
+</h2>
+
+<p class="text-info">
+
+Registrados
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card border-0 shadow-sm">
+
+<div class="card-body">
+
+<h6 class="text-secondary">
+
+Productos
+
+</h6>
+
+<h2>
+
+458
+
+</h2>
+
+<p class="text-warning">
+
+En catálogo
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!--================ FILTROS =================-->
+
+<div class="card border-0 shadow-sm mb-4">
+
+<div class="card-body">
+
+<div class="row g-3">
+
+<div class="col-lg-3">
+
+<label class="form-label">
+
+Fecha Inicial
+
+</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+<div class="col-lg-3">
+
+<label class="form-label">
+
+Fecha Final
+
+</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+<div class="col-lg-3">
+
+<label class="form-label">
+
+Tipo de Reporte
+
+</label>
+
+<select class="form-select">
+
+<option>Ventas</option>
+<option>Clientes</option>
+<option>Productos</option>
+<option>Inventario</option>
+
+</select>
+
+</div>
+
+<div class="col-lg-3 d-flex align-items-end">
+
+<button class="btn btn-primary w-100">
+
+<i class="bi bi-search"></i>
+
+Generar Reporte
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!--================ GRÁFICA PRINCIPAL =================-->
+
+<div class="card border-0 shadow-sm">
+
+<div class="card-header bg-white">
+
+<h5 class="mb-0">
+
+Ventas Mensuales
+
+</h5>
+
+</div>
+
+<div class="card-body">
+
+<canvas id="graficaVentas"
+height="120"></canvas>
+
+</div>
+
+</div>
+
+ <!--================ RESUMEN DE REPORTES =================-->
+
+<div class="row mt-4">
+
+    <!-- Productos más vendidos -->
+
+    <div class="col-lg-4">
+
+        <div class="card border-0 shadow-sm h-100">
+
+            <div class="card-header bg-white">
+
+                <h5 class="mb-0">
+
+                    Productos Más Vendidos
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span>MacBook Air M3</span>
+
+                    <strong>182 ventas</strong>
+
+                </div>
+
+                <div class="progress mb-3">
+
+                    <div class="progress-bar bg-primary"
+                        style="width:90%;"></div>
+
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span>Galaxy S24 Ultra</span>
+
+                    <strong>154 ventas</strong>
+
+                </div>
+
+                <div class="progress mb-3">
+
+                    <div class="progress-bar bg-success"
+                        style="width:78%;"></div>
+
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <span>Sony WH-1000XM5</span>
+
+                    <strong>127 ventas</strong>
+
+                </div>
+
+                <div class="progress mb-3">
+
+                    <div class="progress-bar bg-warning"
+                        style="width:65%;"></div>
+
+                </div>
+
+                <div class="d-flex justify-content-between">
+
+                    <span>Galaxy Watch 7</span>
+
+                    <strong>94 ventas</strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-bar bg-info"
+                        style="width:48%;"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Ingresos -->
+
+    <div class="col-lg-4">
+
+        <div class="card border-0 shadow-sm h-100">
+
+            <div class="card-header bg-white">
+
+                <h5 class="mb-0">
+
+                    Ingresos por Trimestre
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="graficaIngresos"
+                    height="260"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Inventario -->
+
+    <div class="col-lg-4">
+
+        <div class="card border-0 shadow-sm h-100">
+
+            <div class="card-header bg-white">
+
+                <h5 class="mb-0">
+
+                    Estado del Inventario
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="mb-4">
+
+                    <div class="d-flex justify-content-between">
+
+                        <span>Disponibles</span>
+
+                        <strong>425</strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-bar bg-success"
+                            style="width:92%;"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <div class="d-flex justify-content-between">
+
+                        <span>Stock Bajo</span>
+
+                        <strong>18</strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-bar bg-warning"
+                            style="width:18%;"></div>
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <span>Agotados</span>
+
+                        <strong>15</strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-bar bg-danger"
+                            style="width:15%;"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--================ INGRESOS POR MES =================-->
+
+<div class="card border-0 shadow-sm mt-4">
+
+    <div class="card-header bg-white">
+
+        <h5 class="mb-0">
+
+            Resumen de Ingresos Mensuales
+
+        </h5>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle mb-0">
+
+            <thead class="table-light">
+
+                <tr>
+
+                    <th>Mes</th>
+
+                    <th>Ventas</th>
+
+                    <th>Pedidos</th>
+
+                    <th>Ingresos</th>
+
+                    <th>Crecimiento</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>Enero</td>
+
+                    <td>210</td>
+
+                    <td>205</td>
+
+                    <td>$82.000.000</td>
+
+                    <td class="text-success">+8%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Febrero</td>
+
+                    <td>245</td>
+
+                    <td>239</td>
+
+                    <td>$94.500.000</td>
+
+                    <td class="text-success">+12%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Marzo</td>
+
+                    <td>272</td>
+
+                    <td>265</td>
+
+                    <td>$108.700.000</td>
+
+                    <td class="text-success">+15%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Abril</td>
+
+                    <td>290</td>
+
+                    <td>284</td>
+
+                    <td>$119.900.000</td>
+
+                    <td class="text-success">+10%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Mayo</td>
+
+                    <td>315</td>
+
+                    <td>307</td>
+
+                    <td>$131.400.000</td>
+
+                    <td class="text-success">+9%</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Junio</td>
+
+                    <td>338</td>
+
+                    <td>330</td>
+
+                    <td>$145.600.000</td>
+
+                    <td class="text-success">+11%</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+ <!--================ CLIENTES FRECUENTES =================-->
+
+<div class="row mt-4">
+
+    <div class="col-lg-6">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-header bg-white">
+
+                <h5 class="mb-0">
+
+                    Clientes con Mayor Volumen de Compras
+
+                </h5>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Cliente</th>
+
+                            <th>Compras</th>
+
+                            <th>Total</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>Fabio Alejandro Zapata</td>
+
+                            <td>24</td>
+
+                            <td>$68.900.000</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Laura Gómez</td>
+
+                            <td>18</td>
+
+                            <td>$54.200.000</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Carlos Ramírez</td>
+
+                            <td>16</td>
+
+                            <td>$47.600.000</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>María Pérez</td>
+
+                            <td>15</td>
+
+                            <td>$43.800.000</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Andrés Torres</td>
+
+                            <td>12</td>
+
+                            <td>$35.400.000</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<!--================ PRODUCTOS MENOS VENDIDOS =================-->
+
+    <div class="col-lg-6">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-header bg-white">
+
+                <h5 class="mb-0">
+
+                    Productos con Menor Rotación
+
+                </h5>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Producto</th>
+
+                            <th>Ventas</th>
+
+                            <th>Stock</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>Galaxy Watch 7</td>
+
+                            <td>18</td>
+
+                            <td>32</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>iPad Air M2</td>
+
+                            <td>22</td>
+
+                            <td>20</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Logitech G915</td>
+
+                            <td>27</td>
+
+                            <td>15</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Sony WH-1000XM5</td>
+
+                            <td>31</td>
+
+                            <td>8</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Logitech MX Master 3S</td>
+
+                            <td>35</td>
+
+                            <td>34</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--================ KPI =================-->
+
+<div class="row mt-4">
+
+    <div class="col-lg-3 col-md-6 mb-4">
+
+        <div class="card border-0 shadow-sm text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-graph-up-arrow display-4 text-success"></i>
+
+                <h2 class="mt-3">
+
+                    +18%
+
+                </h2>
+
+                <p class="text-secondary">
+
+                    Crecimiento Anual
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+
+        <div class="card border-0 shadow-sm text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-cash-stack display-4 text-primary"></i>
+
+                <h2 class="mt-3">
+
+                    92%
+
+                </h2>
+
+                <p class="text-secondary">
+
+                    Rentabilidad
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+
+        <div class="card border-0 shadow-sm text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-people-fill display-4 text-warning"></i>
+
+                <h2 class="mt-3">
+
+                    87%
+
+                </h2>
+
+                <p class="text-secondary">
+
+                    Clientes Recurrentes
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-4">
+
+        <div class="card border-0 shadow-sm text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-box-seam display-4 text-danger"></i>
+
+                <h2 class="mt-3">
+
+                    96%
+
+                </h2>
+
+                <p class="text-secondary">
+
+                    Disponibilidad de Inventario
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--================ ALERTAS =================-->
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-header bg-white">
+
+        <h5 class="mb-0">
+
+            Recomendaciones y Alertas
+
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="alert alert-warning">
+
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+            Existen productos con baja rotación que requieren campañas promocionales.
+
+        </div>
+
+        <div class="alert alert-info">
+
+            <i class="bi bi-info-circle-fill me-2"></i>
+
+            El crecimiento de ventas del trimestre fue superior al objetivo establecido.
+
+        </div>
+
+        <div class="alert alert-success">
+
+            <i class="bi bi-check-circle-fill me-2"></i>
+
+            La rentabilidad del negocio continúa en niveles óptimos.
+
+        </div>
+
+        <div class="alert alert-danger">
+
+            <i class="bi bi-x-octagon-fill me-2"></i>
+
+            Hay productos con inventario crítico que deben ser reabastecidos.
+
+        </div>
+
+    </div>
+
+</div>
+
+ <!--================ MODAL GENERAR REPORTE =================-->
+
+<div class="modal fade" id="modalReporte" tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+
+                <h5 class="modal-title">
+
+                    Generar Reporte
+
+                </h5>
+
+                <button class="btn-close btn-close-white"
+                    data-bs-dismiss="modal"></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Tipo de Reporte
+
+                    </label>
+
+                    <select class="form-select">
+
+                        <option>Ventas</option>
+                        <option>Clientes</option>
+                        <option>Inventario</option>
+                        <option>Productos</option>
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Formato
+
+                    </label>
+
+                    <select class="form-select">
+
+                        <option>PDF</option>
+                        <option>Excel</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancelar
+
+                </button>
+
+                <button class="btn btn-primary">
+
+                    Generar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--================ MODAL EXPORTAR =================-->
+
+<div class="modal fade" id="modalExportar" tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-success text-white">
+
+                <h5 class="modal-title">
+
+                    Exportar Información
+
+                </h5>
+
+                <button class="btn-close btn-close-white"
+                    data-bs-dismiss="modal"></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                Seleccione el formato en el que desea descargar el reporte.
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-success">
+
+                    <i class="bi bi-file-earmark-excel"></i>
+
+                    Excel
+
+                </button>
+
+                <button class="btn btn-danger">
+
+                    <i class="bi bi-file-earmark-pdf"></i>
+
+                    PDF
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+</div>
+
+</div>
+
+<!--================ FOOTER =================-->
+
+<footer class="bg-white border-top py-3">
+
+    <div class="container-fluid">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <span>
+
+                © 2026 <strong>VenTech</strong> | Panel Administrativo
+
+            </span>
+
+            <span>
+
+                Módulo de Reportes v1.0
+
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!--================ LIBRERÍAS =================-->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!--================ GRÁFICAS =================-->
+
+<script>
+
+const graficaVentas = document.getElementById('graficaVentas');
+
+if(graficaVentas){
+
+new Chart(graficaVentas,{
+
+type:'line',
+
+data:{
+
+labels:['Ene','Feb','Mar','Abr','May','Jun'],
+
+datasets:[{
+
+label:'Ventas',
+
+data:[82,95,108,120,132,145],
+
+borderWidth:3,
+
+fill:true,
+
+tension:0.4
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+
+legend:{display:true}
+
+}
+
+}
+
+});
+
+}
+
+const graficaIngresos = document.getElementById('graficaIngresos');
+
+if(graficaIngresos){
+
+new Chart(graficaIngresos,{
+
+type:'bar',
+
+data:{
+
+labels:['T1','T2','T3','T4'],
+
+datasets:[{
+
+label:'Ingresos',
+
+data:[250,340,410,520]
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+
+legend:{display:false}
+
+}
+
+}
+
+});
+
+}
+
+</script>
+
+<!--================ JAVASCRIPT =================-->
+
+<script src="/JS/reportes.js"></script>
+
+</body>
+
+</html>

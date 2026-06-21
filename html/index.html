@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VenTech | Tecnología para tu empresa</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/Style/estilos.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold fs-2 text-primary" href="#">
+                <img src="/Imagen/logo.png" height="45" class="me-2">
+            </a>
+
+            <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active fw-semibold" href="#">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalogo.html">
+                            Productos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Ofertas
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- Buscador -->
+
+                <form class="d-flex me-4" style="width:320px;">
+
+                    <div class="input-group">
+
+                        <span class="input-group-text bg-white">
+                            <i class="bi bi-search"></i>
+                        </span>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Buscar productos...">
+
+                    </div>
+
+                </form>
+
+                <!-- Botones -->
+
+                <div class="d-flex align-items-center">
+
+                    <a href="login.html"
+                        class="btn btn-primary me-2 px-4">
+
+                        Iniciar sesión
+
+                    </a>
+
+                    <a href="registro.html"
+                        class="btn btn-outline-primary me-3">
+
+                        Crear cuenta
+
+                    </a>
+
+                    <a href="carrito.html"
+                        class="position-relative text-dark fs-4">
+
+                        <i class="bi bi-cart3"></i>
+
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+
+                            3
+
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="py-5 hero">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+
+                    <span class="badge bg-info-subtle text-primary mb-3 px-3 py-2">
+
+                        Lo último en tecnología
+
+                    </span>
+
+                    <h1 class="display-3 fw-bold">
+
+                        Tecnología que
+
+                        <span class="text-primary">
+
+                            transforma
+
+                        </span>
+
+                        tu empresa
+
+                    </h1>
+
+                    <p class="lead text-secondary mt-4">
+
+                        Descubre computadores, smartphones, accesorios
+                        y equipos tecnológicos de las mejores marcas
+                        para potenciar tu negocio.
+
+                    </p>
+
+                    <div class="mt-5">
+
+                        <a href="catalogo.html"
+                            class="btn btn-primary btn-lg px-5 me-3">
+
+                            Ver productos
+
+                            <i class="bi bi-arrow-right ms-2"></i>
+
+                        </a>
+
+                        <a href="registro.html"
+                            class="btn btn-outline-primary btn-lg px-5">
+
+                            Crear cuenta
+
+                        </a>
+
+                    </div>
+
+                    <div class="row mt-5">
+
+                        <div class="col-md-4">
+
+                            <div class="d-flex">
+
+                                <i class="bi bi-shield-check fs-2 text-info me-3"></i>
+
+                                <div>
+
+                                    <strong>
+
+                                        Compra segura
+
+                                    </strong>
+
+                                    <br>
+
+                                    <small>
+
+                                        Protección garantizada
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="d-flex">
+
+                                <i class="bi bi-truck fs-2 text-info me-3"></i>
+
+                                <div>
+
+                                    <strong>
+
+                                        Envíos rápidos
+
+                                    </strong>
+
+                                    <br>
+
+                                    <small>
+
+                                        A toda Colombia
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="d-flex">
+
+                                <i class="bi bi-patch-check fs-2 text-info me-3"></i>
+
+                                <div>
+
+                                    <strong>
+
+                                        Garantía
+
+                                    </strong>
+
+                                    <br>
+
+                                    <small>
+
+                                        Productos originales
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 text-center">
+
+                    <img
+                        src="/Imagen/banner.png"
+                        class="img-fluid hero-img"
+                        alt="Laptop">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Aquí comienza la Parte 2 -->
+         <!-- ================= CATEGORÍAS ================= -->
+
+    <section class="py-4 bg-white">
+
+        <div class="container">
+
+            <div class="row g-3">
+
+                <div class="col">
+                    <div class="categoria-card text-center p-3 shadow-sm rounded">
+                        <i class="bi bi-tag-fill fs-2 text-primary"></i>
+                        <h6 class="mt-3">Precios</h6>
+                        <small>Imperdibles</small>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="categoria-card text-center p-3 shadow-sm rounded">
+                        <i class="bi bi-phone fs-2 text-primary"></i>
+                        <h6 class="mt-3">Smartphones</h6>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="categoria-card text-center p-3 shadow-sm rounded">
+                        <i class="bi bi-laptop fs-2 text-primary"></i>
+                        <h6 class="mt-3">Computadores</h6>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="categoria-card text-center p-3 shadow-sm rounded">
+                        <i class="bi bi-tv fs-2 text-primary"></i>
+                        <h6 class="mt-3">TV y Pantallas</h6>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="categoria-card text-center p-3 shadow-sm rounded">
+                        <i class="bi bi-headphones fs-2 text-primary"></i>
+                        <h6 class="mt-3">Audio</h6>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="categoria-card text-center p-3 shadow-sm rounded">
+                        <i class="bi bi-keyboard fs-2 text-primary"></i>
+                        <h6 class="mt-3">Periféricos</h6>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="categoria-card text-center p-3 shadow-sm rounded">
+                        <i class="bi bi-cpu fs-2 text-primary"></i>
+                        <h6 class="mt-3">Componentes</h6>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= PRODUCTOS ================= -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h2 class="fw-bold">
+                    Productos más vendidos
+                </h2>
+
+                <a href="catalogo.html"
+                    class="text-decoration-none">
+
+                    Ver todos
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Producto 1 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="card border-0 shadow h-100">
+
+                        <img src="img/productos/macbook.png"
+                            class="card-img-top p-4">
+
+                        <div class="card-body">
+
+                            <h5>MacBook Air M3</h5>
+
+                            <small class="text-secondary">
+                                Apple M3 · 16GB · 512GB SSD
+                            </small>
+
+                            <div class="mt-2">
+
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+
+                            </div>
+
+                            <h4 class="text-primary fw-bold mt-3">
+
+                                $6.890.000
+
+                            </h4>
+
+                        </div>
+
+                        <div class="card-footer bg-white border-0">
+
+                            <button class="btn btn-primary w-100">
+
+                                <i class="bi bi-cart-plus"></i>
+
+                                Agregar al carrito
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Producto 2 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="card border-0 shadow h-100">
+
+                        <img src="img/productos/s24.png"
+                            class="card-img-top p-4">
+
+                        <div class="card-body">
+
+                            <h5>Samsung S24 Ultra</h5>
+
+                            <small class="text-secondary">
+
+                                256GB · 12GB RAM
+
+                            </small>
+
+                            <div class="mt-2">
+
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-half text-warning"></i>
+
+                            </div>
+
+                            <h4 class="text-primary fw-bold mt-3">
+
+                                $4.799.900
+
+                            </h4>
+
+                        </div>
+
+                        <div class="card-footer bg-white border-0">
+
+                            <button class="btn btn-primary w-100">
+
+                                <i class="bi bi-cart-plus"></i>
+
+                                Agregar al carrito
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Producto 3 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="card border-0 shadow h-100">
+
+                        <span
+                            class="badge bg-danger position-absolute m-3">
+
+                            -15%
+
+                        </span>
+
+                        <img src="img/productos/monitor.png"
+                            class="card-img-top p-4">
+
+                        <div class="card-body">
+
+                            <h5>Monitor LG UltraGear</h5>
+
+                            <small class="text-secondary">
+
+                                27" · 144Hz
+
+                            </small>
+
+                            <div class="mt-2">
+
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+
+                            </div>
+
+                            <h6 class="text-decoration-line-through text-secondary">
+
+                                $1.529.900
+
+                            </h6>
+
+                            <h4 class="text-primary fw-bold">
+
+                                $1.299.900
+
+                            </h4>
+
+                        </div>
+
+                        <div class="card-footer bg-white border-0">
+
+                            <button class="btn btn-primary w-100">
+
+                                <i class="bi bi-cart-plus"></i>
+
+                                Agregar al carrito
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Producto 4 -->
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="card border-0 shadow h-100">
+
+                        <img src="img/productos/sony.png"
+                            class="card-img-top p-4">
+
+                        <div class="card-body">
+
+                            <h5>Sony WH-1000XM5</h5>
+
+                            <small class="text-secondary">
+
+                                Cancelación de ruido
+
+                            </small>
+
+                            <div class="mt-2">
+
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+
+                            </div>
+
+                            <h4 class="text-primary fw-bold mt-3">
+
+                                $1.899.000
+
+                            </h4>
+
+                        </div>
+
+                        <div class="card-footer bg-white border-0">
+
+                            <button class="btn btn-primary w-100">
+
+                                <i class="bi bi-cart-plus"></i>
+
+                                Agregar al carrito
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+         <!-- ================= BENEFICIOS ================= -->
+
+    <section class="py-5 bg-light">
+
+        <div class="container">
+
+            <div class="text-center mb-5">
+
+                <h2 class="fw-bold">¿Por qué comprar en VenTech?</h2>
+
+                <p class="text-secondary">
+                    Somos tu aliado tecnológico con productos originales y el mejor servicio.
+                </p>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="card border-0 shadow-sm text-center p-4 h-100">
+
+                        <i class="bi bi-shield-check display-4 text-primary mb-3"></i>
+
+                        <h5>Compra Segura</h5>
+
+                        <p class="text-secondary">
+                            Todos nuestros pagos cuentan con altos estándares de seguridad.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="card border-0 shadow-sm text-center p-4 h-100">
+
+                        <i class="bi bi-truck display-4 text-primary mb-3"></i>
+
+                        <h5>Envíos Nacionales</h5>
+
+                        <p class="text-secondary">
+                            Realizamos entregas rápidas a cualquier ciudad de Colombia.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="card border-0 shadow-sm text-center p-4 h-100">
+
+                        <i class="bi bi-award display-4 text-primary mb-3"></i>
+
+                        <h5>Garantía Oficial</h5>
+
+                        <p class="text-secondary">
+                            Todos los equipos incluyen garantía oficial del fabricante.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+
+                    <div class="card border-0 shadow-sm text-center p-4 h-100">
+
+                        <i class="bi bi-headset display-4 text-primary mb-3"></i>
+
+                        <h5>Soporte 24/7</h5>
+
+                        <p class="text-secondary">
+                            Nuestro equipo está disponible para ayudarte cuando lo necesites.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= NEWSLETTER ================= -->
+
+    <section class="py-5 text-white"
+        style="background:linear-gradient(90deg,#0d6efd,#18c2d9);">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+
+                    <h2 class="fw-bold">
+
+                        Suscríbete a VenTech
+
+                    </h2>
+
+                    <p>
+
+                        Recibe ofertas exclusivas, promociones y las últimas novedades en tecnología.
+
+                    </p>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <form class="row g-2">
+
+                        <div class="col-md-8">
+
+                            <input
+                                type="email"
+                                class="form-control form-control-lg"
+                                placeholder="Correo electrónico">
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <button class="btn btn-light btn-lg w-100">
+
+                                Suscribirme
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="bg-dark text-white pt-5">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-3">
+
+                    <h5 class="mb-4">Productos</h5>
+
+                    <ul class="list-unstyled">
+
+                        <li><a href="#" class="text-white text-decoration-none">Computadores</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Smartphones</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">TV y Pantallas</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Audio</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Periféricos</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Componentes</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-lg-2">
+
+                    <h5 class="mb-4">Empresa</h5>
+
+                    <ul class="list-unstyled">
+
+                        <li><a href="#" class="text-white text-decoration-none">Quiénes somos</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Blog</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Trabaja con nosotros</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Política de privacidad</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-lg-2">
+
+                    <h5 class="mb-4">Soporte</h5>
+
+                    <ul class="list-unstyled">
+
+                        <li><a href="#" class="text-white text-decoration-none">Centro de ayuda</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Envíos</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Garantías</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Contacto</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-lg-2">
+
+                    <h5 class="mb-4">Legal</h5>
+
+                    <ul class="list-unstyled">
+
+                        <li><a href="#" class="text-white text-decoration-none">Términos y condiciones</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Protección de datos</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Facturación electrónica</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Libro de reclamaciones</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <h5 class="mb-4">Métodos de pago</h5>
+
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+
+                        <img src="img/pagos/mercadopago.png" height="35">
+                        <img src="img/pagos/pse.png" height="35">
+                        <img src="img/pagos/visa.png" height="35">
+                        <img src="img/pagos/mastercard.png" height="35">
+                        <img src="img/pagos/amex.png" height="35">
+
+                    </div>
+
+                    <h6>Síguenos</h6>
+
+                    <div class="fs-3">
+
+                        <i class="bi bi-facebook me-3"></i>
+                        <i class="bi bi-instagram me-3"></i>
+                        <i class="bi bi-youtube me-3"></i>
+                        <i class="bi bi-linkedin"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr class="border-secondary my-4">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-6">
+
+                    © 2026 <strong>VenTech</strong>. Todos los derechos reservados.
+
+                </div>
+
+                <div class="col-md-6 text-md-end">
+
+                    <i class="bi bi-shield-lock me-2"></i> Sitio 100% seguro
+
+                    <span class="mx-3">|</span>
+
+                    <i class="bi bi-truck me-2"></i> Envíos a toda Colombia
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript -->
+
+    <script src="/JS/app.js"></script>
+
+</body>
+
+</html>

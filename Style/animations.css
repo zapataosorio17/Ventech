@@ -1,0 +1,1503 @@
+/*=====================================================
+            VENTECH
+            animations.css
+======================================================*/
+
+/*=====================================================
+                FADE IN
+======================================================*/
+
+.fade-in{
+
+    animation:fadeIn .8s ease forwards;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/*=====================================================
+                FADE UP
+======================================================*/
+
+.fade-up{
+
+    animation:fadeUp .8s ease forwards;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================================
+                FADE DOWN
+======================================================*/
+
+.fade-down{
+
+    animation:fadeDown .8s ease forwards;
+
+}
+
+@keyframes fadeDown{
+
+    from{
+
+        opacity:0;
+        transform:translateY(-40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================================
+                SLIDE LEFT
+======================================================*/
+
+.slide-left{
+
+    animation:slideLeft .7s ease forwards;
+
+}
+
+@keyframes slideLeft{
+
+    from{
+
+        opacity:0;
+        transform:translateX(-50px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateX(0);
+
+    }
+
+}
+
+/*=====================================================
+                SLIDE RIGHT
+======================================================*/
+
+.slide-right{
+
+    animation:slideRight .7s ease forwards;
+
+}
+
+@keyframes slideRight{
+
+    from{
+
+        opacity:0;
+        transform:translateX(50px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateX(0);
+
+    }
+
+}
+
+/*=====================================================
+                ZOOM IN
+======================================================*/
+
+.zoom-in{
+
+    animation:zoomIn .6s ease forwards;
+
+}
+
+@keyframes zoomIn{
+
+    from{
+
+        opacity:0;
+        transform:scale(.8);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+
+/*=====================================================
+                ZOOM OUT
+======================================================*/
+
+.zoom-out{
+
+    animation:zoomOut .6s ease forwards;
+
+}
+
+@keyframes zoomOut{
+
+    from{
+
+        opacity:0;
+        transform:scale(1.2);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+
+/*=====================================================
+                BOUNCE
+======================================================*/
+
+.bounce{
+
+    animation:bounce 1.5s infinite;
+
+}
+
+@keyframes bounce{
+
+    0%,20%,50%,80%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    40%{
+
+        transform:translateY(-15px);
+
+    }
+
+    60%{
+
+        transform:translateY(-8px);
+
+    }
+
+}
+
+/*=====================================================
+                FLOAT
+======================================================*/
+
+.float{
+
+    animation:floating 4s ease-in-out infinite;
+
+}
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+/*=====================================================
+                PULSE
+======================================================*/
+
+.pulse{
+
+    animation:pulse 1.5s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.05);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/*=====================================================
+                ROTATE
+======================================================*/
+
+.rotate{
+
+    animation:rotate360 2s linear infinite;
+
+}
+
+@keyframes rotate360{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*=====================================================
+                SHAKE
+======================================================*/
+
+.shake{
+
+    animation:shake .6s;
+
+}
+
+@keyframes shake{
+
+    0%{transform:translateX(0);}
+    20%{transform:translateX(-8px);}
+    40%{transform:translateX(8px);}
+    60%{transform:translateX(-6px);}
+    80%{transform:translateX(6px);}
+    100%{transform:translateX(0);}
+
+}
+
+/*=====================================================
+                HEART BEAT
+======================================================*/
+
+.heartbeat{
+
+    animation:heartbeat 1.3s infinite;
+
+}
+
+@keyframes heartbeat{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    25%{
+
+        transform:scale(1.08);
+
+    }
+
+    50%{
+
+        transform:scale(1);
+
+    }
+
+    75%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/*=====================================================
+                FIN PARTE 1
+======================================================*/
+
+/*=====================================================
+                HOVER CARDS
+======================================================*/
+
+.hover-card{
+
+    transition:all .35s ease;
+
+}
+
+.hover-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.18);
+
+}
+
+/*=====================================================
+                HOVER PRODUCTOS
+======================================================*/
+
+.hover-product{
+
+    overflow:hidden;
+
+}
+
+.hover-product img{
+
+    transition:transform .4s ease;
+
+}
+
+.hover-product:hover img{
+
+    transform:scale(1.08);
+
+}
+
+/*=====================================================
+                HOVER BOTONES
+======================================================*/
+
+.btn-hover{
+
+    transition:all .3s ease;
+
+}
+
+.btn-hover:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.18);
+
+}
+
+.btn-grow:hover{
+
+    transform:scale(1.05);
+
+}
+
+.btn-rotate:hover{
+
+    transform:rotate(-2deg);
+
+}
+
+/*=====================================================
+                HOVER ICONOS
+======================================================*/
+
+.icon-hover{
+
+    transition:.3s ease;
+
+}
+
+.icon-hover:hover{
+
+    transform:scale(1.2);
+
+}
+
+.icon-rotate:hover{
+
+    transform:rotate(360deg);
+
+    transition:.6s;
+
+}
+
+/*=====================================================
+                HOVER IMÁGENES
+======================================================*/
+
+.img-hover{
+
+    overflow:hidden;
+
+}
+
+.img-hover img{
+
+    transition:.4s ease;
+
+}
+
+.img-hover:hover img{
+
+    transform:scale(1.12);
+
+}
+
+.img-bright:hover img{
+
+    filter:brightness(1.1);
+
+}
+
+.img-dark:hover img{
+
+    filter:brightness(.8);
+
+}
+
+/*=====================================================
+                ENLACES
+======================================================*/
+
+.link-hover{
+
+    position:relative;
+
+}
+
+.link-hover::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-4px;
+
+    width:0;
+
+    height:2px;
+
+    background:#0d6efd;
+
+    transition:.3s;
+
+}
+
+.link-hover:hover::after{
+
+    width:100%;
+
+}
+
+/*=====================================================
+                NAVBAR
+======================================================*/
+
+.nav-item-animate{
+
+    transition:.3s;
+
+}
+
+.nav-item-animate:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/*=====================================================
+                BOTÓN FLOTANTE
+======================================================*/
+
+.float-button{
+
+    animation:floatButton 2.5s infinite;
+
+}
+
+@keyframes floatButton{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================================
+                LOADER
+======================================================*/
+
+.loader{
+
+    width:60px;
+
+    height:60px;
+
+    border:6px solid #e9ecef;
+
+    border-top:6px solid #0d6efd;
+
+    border-radius:50%;
+
+    animation:loaderSpin 1s linear infinite;
+
+}
+
+@keyframes loaderSpin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*=====================================================
+                SPINNER
+======================================================*/
+
+.spinner-small{
+
+    width:30px;
+
+    height:30px;
+
+    border:4px solid #ddd;
+
+    border-top:4px solid #0d6efd;
+
+    border-radius:50%;
+
+    animation:loaderSpin .8s linear infinite;
+
+}
+
+/*=====================================================
+                DESTELLO
+======================================================*/
+
+.glow{
+
+    animation:glow 2s infinite;
+
+}
+
+@keyframes glow{
+
+    0%{
+
+        box-shadow:0 0 0 rgba(13,110,253,0);
+
+    }
+
+    50%{
+
+        box-shadow:0 0 20px rgba(13,110,253,.45);
+
+    }
+
+    100%{
+
+        box-shadow:0 0 0 rgba(13,110,253,0);
+
+    }
+
+}
+
+/*=====================================================
+                EFECTO RIPPLE
+======================================================*/
+
+.ripple{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.ripple::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:15px;
+
+    height:15px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.5);
+
+    opacity:0;
+
+    transform:scale(1);
+
+}
+
+.ripple:hover::after{
+
+    animation:rippleEffect .7s ease;
+
+}
+
+@keyframes rippleEffect{
+
+    from{
+
+        opacity:.8;
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:scale(18);
+
+    }
+
+}
+
+/*=====================================================
+                FIN PARTE 2
+======================================================*/
+/*=====================================================
+                SIDEBAR
+======================================================*/
+
+.sidebar-animate{
+
+    animation:sidebarFade .6s ease;
+
+}
+
+@keyframes sidebarFade{
+
+    from{
+
+        opacity:0;
+        transform:translateX(-40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateX(0);
+
+    }
+
+}
+
+/*=====================================================
+                TOPBAR
+======================================================*/
+
+.topbar-animate{
+
+    animation:topbarDown .6s ease;
+
+}
+
+@keyframes topbarDown{
+
+    from{
+
+        opacity:0;
+        transform:translateY(-30px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================================
+                DASHBOARD CARDS
+======================================================*/
+
+.dashboard-card{
+
+    transition:.35s ease;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+
+}
+
+/*=====================================================
+                KPI CARDS
+======================================================*/
+
+.kpi-hover{
+
+    transition:.35s;
+
+}
+
+.kpi-hover:hover{
+
+    transform:scale(1.03);
+
+}
+
+/*=====================================================
+                TABLAS
+======================================================*/
+
+.table-row{
+
+    transition:.3s;
+
+}
+
+.table-row:hover{
+
+    background:#eef5ff;
+
+    transform:scale(1.01);
+
+}
+
+/*=====================================================
+                MODALES
+======================================================*/
+
+.modal-animate{
+
+    animation:modalZoom .35s ease;
+
+}
+
+@keyframes modalZoom{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.85);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+/*=====================================================
+                ALERTAS
+======================================================*/
+
+.alert-slide{
+
+    animation:alertSlide .6s ease;
+
+}
+
+@keyframes alertSlide{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/*=====================================================
+                NOTIFICACIONES
+======================================================*/
+
+.notification-pop{
+
+    animation:notificationPop .5s ease;
+
+}
+
+@keyframes notificationPop{
+
+    0%{
+
+        transform:scale(.8);
+
+        opacity:0;
+
+    }
+
+    70%{
+
+        transform:scale(1.05);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/*=====================================================
+                REPORTES
+======================================================*/
+
+.report-card-hover{
+
+    transition:.35s;
+
+}
+
+.report-card-hover:hover{
+
+    transform:translateY(-8px);
+
+}
+
+/*=====================================================
+                GRÁFICAS
+======================================================*/
+
+.chart-animation{
+
+    animation:chartFade .8s ease;
+
+}
+
+@keyframes chartFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================================
+                BARRAS DE PROGRESO
+======================================================*/
+
+.progress-animation{
+
+    animation:progressGrow 1.5s ease forwards;
+
+    transform-origin:left;
+
+}
+
+@keyframes progressGrow{
+
+    from{
+
+        transform:scaleX(0);
+
+    }
+
+    to{
+
+        transform:scaleX(1);
+
+    }
+
+}
+
+/*=====================================================
+                AVATARES
+======================================================*/
+
+.avatar-hover{
+
+    transition:.3s;
+
+}
+
+.avatar-hover:hover{
+
+    transform:scale(1.1) rotate(5deg);
+
+}
+
+/*=====================================================
+                BOTONES ADMIN
+======================================================*/
+
+.admin-btn{
+
+    transition:.3s;
+
+}
+
+.admin-btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+/*=====================================================
+                ICONOS ADMIN
+======================================================*/
+
+.admin-icon{
+
+    transition:.3s;
+
+}
+
+.admin-icon:hover{
+
+    transform:rotate(15deg) scale(1.15);
+
+}
+
+/*=====================================================
+                MENÚ LATERAL
+======================================================*/
+
+.menu-item{
+
+    transition:.3s;
+
+}
+
+.menu-item:hover{
+
+    padding-left:8px;
+
+}
+
+/*=====================================================
+                TOOLTIPS
+======================================================*/
+
+.tooltip-fade{
+
+    animation:tooltipFade .25s ease;
+
+}
+
+@keyframes tooltipFade{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/*=====================================================
+                DROPDOWN
+======================================================*/
+
+.dropdown-animate{
+
+    animation:dropdownFade .3s ease;
+
+}
+
+@keyframes dropdownFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================================
+                FIN PARTE 3
+======================================================*/
+/*=====================================================
+                DELAYS
+======================================================*/
+
+.animate-delay-100{
+
+    animation-delay:.1s;
+
+}
+
+.animate-delay-200{
+
+    animation-delay:.2s;
+
+}
+
+.animate-delay-300{
+
+    animation-delay:.3s;
+
+}
+
+.animate-delay-400{
+
+    animation-delay:.4s;
+
+}
+
+.animate-delay-500{
+
+    animation-delay:.5s;
+
+}
+
+.animate-delay-700{
+
+    animation-delay:.7s;
+
+}
+
+.animate-delay-1000{
+
+    animation-delay:1s;
+
+}
+
+/*=====================================================
+                SKELETON LOADING
+======================================================*/
+
+.skeleton{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#e9ecef;
+
+    border-radius:10px;
+
+}
+
+.skeleton::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-150px;
+
+    width:150px;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.8),
+        transparent
+    );
+
+    animation:skeletonLoading 1.4s infinite;
+
+}
+
+@keyframes skeletonLoading{
+
+    from{
+
+        left:-150px;
+
+    }
+
+    to{
+
+        left:100%;
+
+    }
+
+}
+
+/*=====================================================
+                SHIMMER
+======================================================*/
+
+.shimmer{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.shimmer::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+
+    animation:shimmer 2s infinite;
+
+}
+
+@keyframes shimmer{
+
+    from{
+
+        left:-100%;
+
+    }
+
+    to{
+
+        left:100%;
+
+    }
+
+}
+
+/*=====================================================
+                APPEAR
+======================================================*/
+
+.appear{
+
+    opacity:0;
+
+    animation:appear .8s forwards;
+
+}
+
+@keyframes appear{
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/*=====================================================
+                SCALE HOVER
+======================================================*/
+
+.scale-hover{
+
+    transition:.3s ease;
+
+}
+
+.scale-hover:hover{
+
+    transform:scale(1.05);
+
+}
+
+/*=====================================================
+                ROTATE HOVER
+======================================================*/
+
+.rotate-hover{
+
+    transition:.4s;
+
+}
+
+.rotate-hover:hover{
+
+    transform:rotate(8deg);
+
+}
+
+/*=====================================================
+                SHADOW HOVER
+======================================================*/
+
+.shadow-hover{
+
+    transition:.3s;
+
+}
+
+.shadow-hover:hover{
+
+    box-shadow:0 20px 40px rgba(0,0,0,.18);
+
+}
+
+/*=====================================================
+                OPACITY
+======================================================*/
+
+.opacity-hover{
+
+    transition:.3s;
+
+}
+
+.opacity-hover:hover{
+
+    opacity:.8;
+
+}
+
+/*=====================================================
+                RESPONSIVE
+======================================================*/
+
+@media(max-width:992px){
+
+.fade-up,
+
+.fade-down,
+
+.slide-left,
+
+.slide-right,
+
+.zoom-in,
+
+.zoom-out{
+
+    animation-duration:.6s;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.dashboard-card:hover,
+
+.hover-card:hover,
+
+.report-card-hover:hover{
+
+    transform:none;
+
+}
+
+.btn-hover:hover{
+
+    transform:none;
+
+}
+
+}
+
+/*=====================================================
+                REDUCED MOTION
+======================================================*/
+
+@media (prefers-reduced-motion: reduce){
+
+*,
+*::before,
+*::after{
+
+    animation:none !important;
+
+    transition:none !important;
+
+    scroll-behavior:auto !important;
+
+}
+
+}
+
+/*=====================================================
+                UTILIDADES
+======================================================*/
+
+.animate{
+
+    animation-duration:.8s;
+
+    animation-fill-mode:both;
+
+}
+
+.infinite{
+
+    animation-iteration-count:infinite;
+
+}
+
+.fast{
+
+    animation-duration:.4s;
+
+}
+
+.slow{
+
+    animation-duration:1.5s;
+
+}
+
+.paused{
+
+    animation-play-state:paused;
+
+}
+
+.running{
+
+    animation-play-state:running;
+
+}
+
+/*=====================================================
+                FIN DEL ARCHIVO
+======================================================*/

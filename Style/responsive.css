@@ -1,0 +1,1541 @@
+/*=====================================================
+            VENTECH
+            responsive.css
+======================================================*/
+
+/*=====================================================
+            PANTALLAS MENORES A 1200px
+======================================================*/
+
+@media (max-width:1200px){
+
+.hero h1{
+
+    font-size:46px;
+
+}
+
+.hero p{
+
+    font-size:17px;
+
+}
+
+.section-title h2{
+
+    font-size:34px;
+
+}
+
+.product-card img{
+
+    height:220px;
+
+}
+
+}
+
+/*=====================================================
+            TABLETS
+======================================================*/
+
+@media (max-width:992px){
+
+/*=========== NAVBAR ===========*/
+
+.navbar{
+
+    padding:15px;
+
+}
+
+.navbar-nav{
+
+    margin-top:20px;
+
+}
+
+.navbar-nav .nav-link{
+
+    margin-left:0;
+
+    padding:12px 0;
+
+}
+
+/*=========== HERO ===========*/
+
+.hero{
+
+    text-align:center;
+
+    padding:70px 0;
+
+}
+
+.hero h1{
+
+    font-size:40px;
+
+}
+
+.hero p{
+
+    font-size:16px;
+
+}
+
+.hero img{
+
+    margin-top:40px;
+
+}
+
+/*=========== SECCIONES ===========*/
+
+section{
+
+    padding:70px 0;
+
+}
+
+.section-title{
+
+    margin-bottom:45px;
+
+}
+
+.section-title h2{
+
+    font-size:32px;
+
+}
+
+/*=========== TARJETAS ===========*/
+
+.card{
+
+    margin-bottom:25px;
+
+}
+
+.category-card{
+
+    margin-bottom:25px;
+
+}
+
+.product-card{
+
+    margin-bottom:30px;
+
+}
+
+}
+
+/*=====================================================
+            MÓVILES
+======================================================*/
+
+@media (max-width:768px){
+
+body{
+
+    font-size:15px;
+
+}
+
+/*=========== HERO ===========*/
+
+.hero{
+
+    padding:60px 0;
+
+}
+
+.hero h1{
+
+    font-size:32px;
+
+}
+
+.hero p{
+
+    font-size:15px;
+
+}
+
+.hero .btn{
+
+    width:100%;
+
+    margin-bottom:12px;
+
+}
+
+/*=========== BOTONES ===========*/
+
+.btn{
+
+    width:100%;
+
+}
+
+.product-actions{
+
+    flex-direction:column;
+
+}
+
+.product-actions .btn{
+
+    width:100%;
+
+    margin-bottom:10px;
+
+}
+
+/*=========== CATEGORÍAS ===========*/
+
+.category-card{
+
+    padding:25px;
+
+}
+
+.category-card img{
+
+    width:70px;
+
+}
+
+/*=========== PRODUCTOS ===========*/
+
+.product-title{
+
+    font-size:18px;
+
+}
+
+.product-price{
+
+    font-size:24px;
+
+}
+
+.old-price{
+
+    font-size:15px;
+
+}
+
+/*=========== NEWSLETTER ===========*/
+
+.newsletter{
+
+    text-align:center;
+
+}
+
+.newsletter button{
+
+    width:100%;
+
+    margin-top:15px;
+
+}
+
+}
+
+/*=====================================================
+            CELULARES PEQUEÑOS
+======================================================*/
+
+@media (max-width:576px){
+
+.hero{
+
+    padding:50px 0;
+
+}
+
+.hero h1{
+
+    font-size:28px;
+
+}
+
+.hero p{
+
+    font-size:14px;
+
+}
+
+.section-title h2{
+
+    font-size:28px;
+
+}
+
+.section-title p{
+
+    font-size:14px;
+
+}
+
+.product-card img{
+
+    height:200px;
+
+}
+
+.category-card{
+
+    padding:20px;
+
+}
+
+.category-card h5{
+
+    font-size:17px;
+
+}
+
+.navbar-brand{
+
+    font-size:24px;
+
+}
+
+}
+
+/*=====================================================
+            IMÁGENES
+======================================================*/
+
+img{
+
+    max-width:100%;
+    height:auto;
+
+}
+
+/*=====================================================
+            CONTENEDORES
+======================================================*/
+
+.container,
+.container-fluid{
+
+    width:100%;
+
+}
+
+/*=====================================================
+            FIN PARTE 1
+======================================================*/
+/*=====================================================
+            PRODUCTO
+======================================================*/
+
+@media (max-width:992px){
+
+.product-detail{
+
+    padding:60px 0;
+
+}
+
+.product-gallery{
+
+    margin-bottom:35px;
+
+}
+
+.product-info-detail h2{
+
+    font-size:34px;
+
+}
+
+.product-info-detail .price{
+
+    font-size:32px;
+
+}
+
+.thumbnail-list{
+
+    justify-content:center;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.product-detail{
+
+    padding:50px 0;
+
+}
+
+.product-info-detail{
+
+    text-align:center;
+
+}
+
+.product-info-detail h2{
+
+    font-size:28px;
+
+}
+
+.product-info-detail .price{
+
+    font-size:28px;
+
+}
+
+.quantity{
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+.quantity input{
+
+    width:70px;
+
+}
+
+.thumbnail-list{
+
+    flex-wrap:wrap;
+
+}
+
+.thumbnail-list img{
+
+    width:70px;
+
+    height:70px;
+
+}
+
+}
+
+/*=====================================================
+            CARRITO
+======================================================*/
+
+@media (max-width:992px){
+
+.cart-section{
+
+    padding:60px 0;
+
+}
+
+.cart-total{
+
+    margin-top:30px;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.cart-table{
+
+    font-size:14px;
+
+}
+
+.cart-table img{
+
+    width:60px;
+
+}
+
+.cart-total{
+
+    padding:20px;
+
+}
+
+.cart-total h3{
+
+    font-size:22px;
+
+}
+
+.coupon{
+
+    margin-bottom:25px;
+
+}
+
+}
+
+/*=====================================================
+            CHECKOUT
+======================================================*/
+
+@media (max-width:992px){
+
+.checkout{
+
+    padding:60px 0;
+
+}
+
+.checkout-summary{
+
+    margin-top:30px;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.checkout-form,
+
+.checkout-summary{
+
+    padding:20px;
+
+}
+
+.checkout-summary li{
+
+    font-size:15px;
+
+}
+
+.payment-method{
+
+    padding:12px;
+
+}
+
+}
+
+/*=====================================================
+            HISTORIAL
+======================================================*/
+
+@media (max-width:768px){
+
+.history{
+
+    padding:50px 0;
+
+}
+
+.history-card{
+
+    padding:20px;
+
+}
+
+.history-card h4{
+
+    font-size:20px;
+
+}
+
+}
+
+/*=====================================================
+            FACTURAS
+======================================================*/
+
+@media (max-width:992px){
+
+.invoice{
+
+    padding:30px;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.invoice{
+
+    padding:20px;
+
+}
+
+.invoice-header{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.invoice table{
+
+    font-size:14px;
+
+}
+
+.invoice-total{
+
+    text-align:left;
+
+    margin-top:20px;
+
+}
+
+}
+
+/*=====================================================
+            TABLAS
+======================================================*/
+
+@media (max-width:768px){
+
+.table{
+
+    font-size:14px;
+
+}
+
+.table th,
+
+.table td{
+
+    white-space:nowrap;
+
+}
+
+.table-responsive{
+
+    overflow-x:auto;
+
+}
+
+}
+
+/*=====================================================
+            ALERTAS
+======================================================*/
+
+@media (max-width:768px){
+
+.alert{
+
+    font-size:14px;
+
+    padding:15px;
+
+}
+
+}
+
+/*=====================================================
+            BOTONES DE ACCIÓN
+======================================================*/
+
+@media (max-width:576px){
+
+.action-buttons{
+
+    flex-direction:column;
+
+}
+
+.action-buttons .btn{
+
+    width:100%;
+
+}
+
+}
+
+/*=====================================================
+            PANTALLAS MUY PEQUEÑAS
+======================================================*/
+
+@media (max-width:400px){
+
+.product-info-detail h2{
+
+    font-size:24px;
+
+}
+
+.product-price{
+
+    font-size:22px;
+
+}
+
+.invoice{
+
+    padding:15px;
+
+}
+
+.checkout-form{
+
+    padding:15px;
+
+}
+
+}
+
+/*=====================================================
+            FIN PARTE 2
+======================================================*/
+/*=====================================================
+            DASHBOARD
+======================================================*/
+
+@media (max-width:1200px){
+
+.main-content{
+
+    padding:25px;
+
+}
+
+.kpi-card h2{
+
+    font-size:30px;
+
+}
+
+}
+
+@media (max-width:992px){
+
+.sidebar{
+
+    width:100%;
+    min-height:auto;
+    position:relative;
+
+}
+
+.main-content{
+
+    margin-left:0;
+    padding:20px;
+
+}
+
+.topbar{
+
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+
+}
+
+.topbar-user{
+
+    width:100%;
+    justify-content:space-between;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.kpi-card{
+
+    margin-bottom:20px;
+
+}
+
+.kpi-card h2{
+
+    font-size:26px;
+
+}
+
+.topbar-title h2{
+
+    font-size:24px;
+
+}
+
+.topbar-title p{
+
+    font-size:14px;
+
+}
+
+}
+
+/*=====================================================
+            SIDEBAR
+======================================================*/
+
+@media (max-width:992px){
+
+.sidebar-menu{
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+
+}
+
+.sidebar-menu li{
+
+    margin:6px;
+
+}
+
+.sidebar-menu a{
+
+    padding:10px 15px;
+
+}
+
+.sidebar-logo{
+
+    margin-bottom:20px;
+
+}
+
+}
+
+/*=====================================================
+            TABLAS ADMINISTRATIVAS
+======================================================*/
+
+@media (max-width:992px){
+
+.table-responsive{
+
+    overflow-x:auto;
+
+}
+
+.table{
+
+    min-width:900px;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.table{
+
+    font-size:13px;
+
+}
+
+.table th,
+
+.table td{
+
+    padding:10px;
+
+}
+
+}
+
+/*=====================================================
+            TARJETAS ADMIN
+======================================================*/
+
+@media (max-width:768px){
+
+.card{
+
+    margin-bottom:20px;
+
+}
+
+.card-body{
+
+    padding:18px;
+
+}
+
+.stats-card{
+
+    margin-bottom:20px;
+
+}
+
+.summary-card{
+
+    margin-bottom:20px;
+
+}
+
+}
+
+/*=====================================================
+            USUARIOS
+======================================================*/
+
+@media (max-width:768px){
+
+.user-card{
+
+    text-align:center;
+
+}
+
+.user-avatar{
+
+    width:75px;
+    height:75px;
+
+}
+
+.user-name{
+
+    font-size:18px;
+
+}
+
+.user-info li{
+
+    font-size:14px;
+
+}
+
+}
+
+/*=====================================================
+            INVENTARIO
+======================================================*/
+
+@media (max-width:768px){
+
+.inventory-card{
+
+    margin-bottom:20px;
+
+}
+
+.progress{
+
+    height:10px;
+
+}
+
+}
+
+/*=====================================================
+            REPORTES
+======================================================*/
+
+@media (max-width:992px){
+
+.chart-container{
+
+    min-height:300px;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.chart-container{
+
+    min-height:250px;
+
+}
+
+.report-value{
+
+    font-size:28px;
+
+}
+
+.report-title{
+
+    font-size:16px;
+
+}
+
+}
+
+/*=====================================================
+            CONFIGURACIÓN
+======================================================*/
+
+@media (max-width:768px){
+
+.settings-group{
+
+    padding:20px;
+
+}
+
+.settings-group h4{
+
+    font-size:20px;
+
+}
+
+.form-check{
+
+    margin-bottom:15px;
+
+}
+
+}
+
+/*=====================================================
+            MODALES
+======================================================*/
+
+@media (max-width:768px){
+
+.modal-dialog{
+
+    margin:15px;
+
+}
+
+.modal-body{
+
+    padding:20px;
+
+}
+
+.modal-footer{
+
+    flex-direction:column;
+
+}
+
+.modal-footer .btn{
+
+    width:100%;
+
+    margin-bottom:10px;
+
+}
+
+}
+
+/*=====================================================
+            BOTONES
+======================================================*/
+
+@media (max-width:768px){
+
+.btn{
+
+    font-size:15px;
+
+}
+
+.btn i{
+
+    margin-right:5px;
+
+}
+
+}
+
+/*=====================================================
+            PAGINACIÓN
+======================================================*/
+
+@media (max-width:576px){
+
+.pagination{
+
+    justify-content:center;
+    flex-wrap:wrap;
+
+}
+
+.pagination .page-item{
+
+    margin-bottom:8px;
+
+}
+
+}
+
+/*=====================================================
+            ALERTAS
+======================================================*/
+
+@media (max-width:768px){
+
+.alert{
+
+    font-size:14px;
+
+}
+
+}
+
+/*=====================================================
+            FIN PARTE 3
+======================================================*/
+/*=====================================================
+            PANTALLAS GRANDES
+======================================================*/
+
+@media (min-width:1400px){
+
+.container{
+
+    max-width:1320px;
+
+}
+
+.hero h1{
+
+    font-size:62px;
+
+}
+
+.hero p{
+
+    font-size:20px;
+
+}
+
+.product-card img{
+
+    height:300px;
+
+}
+
+.chart-container{
+
+    min-height:450px;
+
+}
+
+}
+
+/*=====================================================
+            MONITORES ULTRA WIDE
+======================================================*/
+
+@media (min-width:1600px){
+
+.main-content{
+
+    padding:45px;
+
+}
+
+.card-body{
+
+    padding:35px;
+
+}
+
+.section-title{
+
+    margin-bottom:70px;
+
+}
+
+}
+
+/*=====================================================
+            MÓVILES PEQUEÑOS
+======================================================*/
+
+@media (max-width:480px){
+
+body{
+
+    font-size:14px;
+
+}
+
+.hero{
+
+    padding:40px 0;
+
+}
+
+.hero h1{
+
+    font-size:24px;
+
+    line-height:1.3;
+
+}
+
+.hero p{
+
+    font-size:14px;
+
+}
+
+.section-title h2{
+
+    font-size:24px;
+
+}
+
+.section-title p{
+
+    font-size:13px;
+
+}
+
+.navbar-brand{
+
+    font-size:22px;
+
+}
+
+.product-card img{
+
+    height:180px;
+
+}
+
+.card-body{
+
+    padding:15px;
+
+}
+
+}
+
+/*=====================================================
+            FORMULARIOS
+======================================================*/
+
+@media (max-width:768px){
+
+.form-control,
+
+.form-select{
+
+    font-size:15px;
+
+    padding:12px;
+
+}
+
+label{
+
+    font-size:14px;
+
+}
+
+}
+
+/*=====================================================
+            ESPACIADOS
+======================================================*/
+
+@media (max-width:768px){
+
+.mt-5{
+
+    margin-top:2rem !important;
+
+}
+
+.mb-5{
+
+    margin-bottom:2rem !important;
+
+}
+
+.py-5{
+
+    padding-top:2rem !important;
+
+    padding-bottom:2rem !important;
+
+}
+
+}
+
+/*=====================================================
+            IMÁGENES
+======================================================*/
+
+@media (max-width:768px){
+
+img{
+
+    max-width:100%;
+
+    height:auto;
+
+}
+
+}
+
+/*=====================================================
+            GRID
+======================================================*/
+
+@media (max-width:992px){
+
+.row{
+
+    row-gap:20px;
+
+}
+
+}
+
+@media (max-width:576px){
+
+[class*="col-"]{
+
+    width:100%;
+
+}
+
+}
+
+/*=====================================================
+            OCULTAR ELEMENTOS
+======================================================*/
+
+.mobile-hide{
+
+    display:block;
+
+}
+
+.mobile-show{
+
+    display:none;
+
+}
+
+@media (max-width:768px){
+
+.mobile-hide{
+
+    display:none !important;
+
+}
+
+.mobile-show{
+
+    display:block !important;
+
+}
+
+}
+
+/*=====================================================
+            FLEX
+======================================================*/
+
+@media (max-width:768px){
+
+.d-flex-mobile{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.justify-mobile-center{
+
+    justify-content:center;
+
+}
+
+.align-mobile-center{
+
+    align-items:center;
+
+}
+
+}
+
+/*=====================================================
+            TEXTO
+======================================================*/
+
+@media (max-width:576px){
+
+.text-mobile-center{
+
+    text-align:center;
+
+}
+
+.text-mobile-left{
+
+    text-align:left;
+
+}
+
+}
+
+/*=====================================================
+            BOTONES
+======================================================*/
+
+@media (max-width:576px){
+
+.btn{
+
+    width:100%;
+
+}
+
+.btn-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+}
+
+/*=====================================================
+            FOOTER
+======================================================*/
+
+@media (max-width:768px){
+
+footer{
+
+    text-align:center;
+
+}
+
+footer .row>div{
+
+    margin-bottom:25px;
+
+}
+
+}
+
+/*=====================================================
+            UTILIDADES RESPONSIVE
+======================================================*/
+
+.hide-desktop{
+
+    display:none;
+
+}
+
+@media (max-width:992px){
+
+.hide-desktop{
+
+    display:block;
+
+}
+
+.hide-tablet{
+
+    display:none;
+
+}
+
+}
+
+@media (max-width:576px){
+
+.hide-mobile{
+
+    display:none;
+
+}
+
+.show-mobile{
+
+    display:block;
+
+}
+
+}
+
+/*=====================================================
+            ORIENTACIÓN LANDSCAPE
+======================================================*/
+
+@media (max-height:500px) and (orientation:landscape){
+
+.hero{
+
+    padding:30px 0;
+
+}
+
+.sidebar{
+
+    overflow-y:auto;
+
+}
+
+}
+
+/*=====================================================
+            IMPRESIÓN
+======================================================*/
+
+@media print{
+
+.navbar,
+
+.sidebar,
+
+footer,
+
+.btn,
+
+.modal,
+
+#btnTop{
+
+    display:none !important;
+
+}
+
+body{
+
+    background:#fff;
+
+    color:#000;
+
+}
+
+.card{
+
+    box-shadow:none;
+
+    border:1px solid #ddd;
+
+}
+
+}
+
+/*=====================================================
+            FIN DEL ARCHIVO
+======================================================*/
