@@ -193,7 +193,7 @@ var VT = (function () {
           return "<li>" + esc(line.trim()) + "</li>";
         })
         .join("");
-      var available = Math.max(0, +p.stock || 0);
+      var available = colorVariants.length ? Math.max(0, +colorVariants[0].stock || 0) : Math.max(0, +p.stock || 0);
       var discount = +p.discount || 0;
       document.getElementById("detailBody").innerHTML =
         '<div class="commerce-detail"><section class="commerce-gallery"><div class="commerce-thumbs">' +
@@ -317,6 +317,8 @@ var VT = (function () {
         }).join("");
       }
       if (main && gallery.length) { main.src = gallery[0]; main.alt = product.name + " color " + variant.color; }
+      var stockText = document.querySelector(".buy-stock span");
+      if (stockText) stockText.textContent = Math.max(0, Number(variant.stock) || 0) + " unidad(es) disponibles";
     },    rateProduct: async function (productId, value) {
       var user = JSON.parse(localStorage.getItem(key + "user") || "null");
       if (!user || !user.email) {
@@ -362,13 +364,18 @@ var VT = (function () {
       var p = products().find(function (x) {
         return x.id === id;
       });
-      if (!p || p.stock < 1) return alert("Producto sin existencias");
+      var select = document.getElementById("detailColorSelect");
+      var variant = select && p && p.colorVariants ? p.colorVariants[+select.value] : null;
+      var color = variant ? variant.color : "";
+      var available = variant ? Math.max(0, Number(variant.stock) || 0) : Math.max(0, Number(p && p.stock) || 0);
+      if (!p || available < 1) return alert("Este color no tiene existencias");
       var a = cart(),
         x = a.find(function (y) {
-          return y.id === id;
+          return y.id === id && (y.color || "") === color;
         });
+      if (x && x.qty >= available) return alert("Solo hay " + available + " unidad(es) disponibles en color " + color + ".");
       if (x) x.qty++;
-      else a.push({ id: id, qty: 1 });
+      else a.push({ id: id, qty: 1, color: color });
       set("cart", a);
       refreshCount();
       this.cart();
@@ -379,27 +386,30 @@ var VT = (function () {
         total = 0;
       box.innerHTML = a.length
         ? a
-            .map(function (x) {
+            .map(function (x, cartIndex) {
               var p = products().find(function (y) {
                 return y.id === x.id;
               }) || { name: "Producto", price: 0, discount: 0 };
+              var variant = (p.colorVariants || []).find(function (item) { return item.color === x.color; });
+              var available = variant ? Math.max(0, Number(variant.stock) || 0) : Math.max(0, Number(p.stock) || 0);
               var v = x.qty * p.price * (1 - (p.discount || 0) / 100);
               total += v;
               return (
                 '<div class="cart-line"><div class="cart-product"><b>' +
                 p.name +
+                (x.color ? " · " + esc(x.color) : "") +
                 "</b><small>" +
                 money(v / x.qty) +
                 " por unidad · " +
-                p.stock +
-                ' disponibles</small></div><div class="cart-actions"><div class="quantity-control"><button type="button" aria-label="Disminuir cantidad" onclick="VT.changeQty(' +
-                x.id +
+                available +
+                ' disponibles</small></div><div class="cart-actions"><div class="quantity-control"><button type="button" aria-label="Disminuir cantidad" onclick="VT.changeQtyAt(' +
+                cartIndex +
                 ', -1)">−</button><span>' +
                 x.qty +
-                '</span><button type="button" aria-label="Aumentar cantidad" onclick="VT.changeQty(' +
-                x.id +
-                ', 1)">+</button></div><button class="remove-cart" type="button" aria-label="Eliminar producto" onclick="VT.remove(' +
-                x.id +
+                '</span><button type="button" aria-label="Aumentar cantidad" onclick="VT.changeQtyAt(' +
+                cartIndex +
+                ', 1)">+</button></div><button class="remove-cart" type="button" aria-label="Eliminar producto" onclick="VT.removeAt(' +
+                cartIndex +
                 ')">×</button></div></div>'
               );
             })
@@ -413,22 +423,24 @@ var VT = (function () {
       drawer.classList.remove("on");
       shade.classList.remove("on");
     },
-    changeQty: function (id, delta) {
+    changeQtyAt: function (index, delta) {
       var a = cart();
-      var item = a.find(function (x) {
-        return x.id === id;
-      });
-      var product = products().find(function (x) {
-        return x.id === id;
-      });
+      var item = a[index];
+      var product = item && products().find(function (x) { return x.id === item.id; });
       if (!item || !product) return;
+      var variant = (product.colorVariants || []).find(function (x) { return x.color === item.color; });
+      var available = variant ? Math.max(0, Number(variant.stock) || 0) : Math.max(0, Number(product.stock) || 0);
       var next = item.qty + delta;
-      if (next < 1) return this.remove(id);
-      if (next > product.stock)
-        return alert(
-          "Solo hay " + product.stock + " unidad(es) disponible(s).",
-        );
+      if (next < 1) return this.removeAt(index);
+      if (next > available) return alert("Solo hay " + available + " unidad(es) disponible(s) en color " + (item.color || "seleccionado") + ".");
       item.qty = next;
+      set("cart", a);
+      refreshCount();
+      this.cart();
+    },
+    removeAt: function (index) {
+      var a = cart();
+      a.splice(index, 1);
       set("cart", a);
       refreshCount();
       this.cart();

@@ -1167,8 +1167,8 @@ dialog::backdrop {
 .color-variant-field { grid-column: 1 / -1; display: grid; gap: 10px; }
 .field-label { font-weight: 700; }
 .color-variant-list { display: grid; gap: 10px; }
-.color-variant-row { display: grid; grid-template-columns: minmax(140px,.8fr) minmax(220px,1.4fr) auto; gap: 10px; padding: 12px; border: 1px solid #d9e4f2; border-radius: 12px; background: #f8fbff; align-items: end; }
-.variant-summary { grid-column: 1 / 3; color: #607a9c; font-size: 13px; }
+.color-variant-row { display: grid; grid-template-columns: minmax(130px,.7fr) minmax(110px,.45fr) minmax(220px,1.35fr) auto; gap: 10px; padding: 12px; border: 1px solid #d9e4f2; border-radius: 12px; background: #f8fbff; align-items: end; }
+.variant-summary { grid-column: 1 / 4; color: #607a9c; font-size: 13px; }
 .variant-remove { border: 0; background: #fff0f2; color: #b42336; border-radius: 8px; padding: 10px 12px; cursor: pointer; }
 .color-add { justify-self: start; }
 @media (max-width: 700px) { .color-variant-row { grid-template-columns: 1fr; } .variant-summary { grid-column: 1; } }

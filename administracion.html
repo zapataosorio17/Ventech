@@ -497,11 +497,12 @@ Promociones y productos tecnológicos para ti.</textarea></label
             max="100"
             value="19" /></label
         ><label
-          >Stock<input
+          >Stock total (calculado por colores)<input
             id="productStock"
             type="number"
             min="0"
-            required /></label
+            value="0"
+            readonly /></label
         ><label
           >Estado<select id="productEnabled">
             <option value="true">Activo</option>
@@ -520,7 +521,7 @@ Promociones y productos tecnológicos para ti.</textarea></label
             <span class="field-label">Colores e imágenes por variante</span>
             <div id="productColorVariants" class="color-variant-list"></div>
             <button class="btn alt color-add" type="button" onclick="Admin.addColorVariant()">+ Agregar color</button>
-            <small>Cada color puede tener hasta 5 imágenes. En la tienda aparecerá como una lista desplegable.</small>
+            <small>Indica la cantidad disponible de cada color. Cada color puede tener hasta 5 imágenes y aparecerá como una opción desplegable en la tienda.</small>
           </div>
         </div>
         <label>Especificaciones<textarea id="productSpecs"></textarea></label

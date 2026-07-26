@@ -590,7 +590,11 @@ var Admin = (function () {
       productDescription.value = p.description;
       productCapacity.value = p.capacity || "";
       productSpecs.value = p.specs || "";
-      this.renderColorVariants(p.colorVariants || String(p.colors || "").split(",").map(function (color) { return { color: color.trim(), images: [] }; }).filter(function (variant) { return variant.color; }));
+      var variants = p.colorVariants || String(p.colors || "").split(",").map(function (color) { return { color: color.trim(), images: [] }; }).filter(function (variant) { return variant.color; });
+      variants = variants.map(function (variant, index) {
+        return { color: variant.color, images: variant.images || [], stock: variant.stock === undefined ? (index === 0 ? Math.max(0, Number(p.stock) || 0) : 0) : variant.stock };
+      });
+      this.renderColorVariants(variants);
       productDialog.showModal();
     },
     renderColorVariants: function (variants) {
@@ -605,28 +609,61 @@ var Admin = (function () {
       var row = document.createElement("div");
       row.className = "color-variant-row";
       row._savedImages = (variant && variant.images ? variant.images : []).filter(Boolean);
-      row.innerHTML = '<label>Nombre del color<input class="variant-color" placeholder="Ej. Negro" value="' + esc((variant && variant.color) || "") + '" required></label><label>Imágenes de este color<input class="variant-files" type="file" multiple accept="image/*"></label><div class="variant-summary">' + (row._savedImages.length ? row._savedImages.length + " imagen(es) guardada(s)" : "Aún no hay imágenes para este color") + '</div><button class="variant-remove" type="button" aria-label="Eliminar color">Eliminar</button>';
-      row.querySelector(".variant-remove").onclick = function () { row.remove(); };
+      row.innerHTML = '<label>Nombre del color<input class="variant-color" placeholder="Ej. Negro" value="' + esc((variant && variant.color) || "") + '" required></label><label>Cantidad<input class="variant-stock" type="number" min="0" value="' + Math.max(0, Number(variant && variant.stock) || 0) + '" required></label><label>Imágenes de este color<input class="variant-files" type="file" multiple accept="image/*"></label><div class="variant-summary">' + (row._savedImages.length ? row._savedImages.length + " imagen(es) guardada(s)" : "Aún no hay imágenes para este color") + '</div><button class="variant-remove" type="button" aria-label="Eliminar color">Eliminar</button>';
+      row.querySelector(".variant-stock").oninput = Admin.updateTotalStock;
+      row.querySelector(".variant-remove").onclick = function () { row.remove(); Admin.updateTotalStock(); };
       host.appendChild(row);
+    },
+    prepareImage: function (file) {
+      return new Promise(function (resolve, reject) {
+        var reader = new FileReader();
+        reader.onerror = reject;
+        reader.onload = function () {
+          var image = new Image();
+          image.onerror = reject;
+          image.onload = function () {
+            var max = 1000;
+            var scale = Math.min(1, max / Math.max(image.width, image.height));
+            var canvas = document.createElement("canvas");
+            canvas.width = Math.max(1, Math.round(image.width * scale));
+            canvas.height = Math.max(1, Math.round(image.height * scale));
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#ffffff";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            resolve(canvas.toDataURL("image/jpeg", 0.72));
+          };
+          image.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
     },
     readColorVariants: function () {
       return Promise.all(Array.from(document.querySelectorAll(".color-variant-row")).map(function (row) {
         var color = row.querySelector(".variant-color").value.trim();
+        var stock = Math.max(0, Number(row.querySelector(".variant-stock").value) || 0);
         var files = Array.from(row.querySelector(".variant-files").files).slice(0, 5);
-        if (!files.length) return Promise.resolve({ color: color, images: row._savedImages || [] });
+        if (!files.length) return Promise.resolve({ color: color, stock: stock, images: row._savedImages || [] });
         return Promise.all(files.map(function (file) {
-          return new Promise(function (resolve) {
-            var reader = new FileReader();
-            reader.onload = function () { resolve(reader.result); };
-            reader.readAsDataURL(file);
-          });
-        })).then(function (images) { return { color: color, images: images }; });
+          return Admin.prepareImage(file);
+        })).then(function (images) { return { color: color, stock: stock, images: images }; });
       })).then(function (variants) { return variants.filter(function (variant) { return variant.color; }); });
+    },
+    updateTotalStock: function () {
+      var total = Array.from(document.querySelectorAll(".variant-stock")).reduce(function (sum, input) {
+        return sum + Math.max(0, Number(input.value) || 0);
+      }, 0);
+      productStock.value = total;
     },
     saveProduct: function (e) {
       e.preventDefault();
       var self = this;
       var done = function (colorVariants) {
+        if (!colorVariants.length) {
+          alert("Agrega al menos un color con su cantidad disponible.");
+          return;
+        }
+        var totalStock = colorVariants.reduce(function (sum, variant) { return sum + variant.stock; }, 0);
         var imgs = colorVariants[0] && colorVariants[0].images ? colorVariants[0].images : [];
         var a = products(),
           p = {
@@ -636,7 +673,7 @@ var Admin = (function () {
             price: +productPrice.value,
             discount: +productDiscount.value,
             vat: +productVat.value,
-            stock: +productStock.value,
+            stock: totalStock,
             enabled: productEnabled.value === "true",
             description: productDescription.value,
             capacity: productCapacity.value.trim(),
@@ -651,7 +688,12 @@ var Admin = (function () {
         });
         if (i >= 0) a[i] = p;
         else a.push(p);
-        set("products", a);
+        try {
+          set("products", a);
+        } catch (error) {
+          alert("No fue posible guardar porque las imágenes ocupan demasiado espacio. Usa hasta 5 imágenes livianas por color (preferiblemente menores de 500 KB).");
+          return;
+        }
         if (window.VentechSql) {
           window.VentechSql.guardarProductos(a).catch(function () {
             alert(
@@ -666,6 +708,8 @@ var Admin = (function () {
       };
       this.readColorVariants().then(function (colorVariants) {
         done(colorVariants);
+      }).catch(function () {
+        alert("No fue posible procesar las imágenes seleccionadas. Intenta con archivos JPG o PNG más livianos.");
       });
     },
     toggleProduct: function (id) {
