@@ -114,6 +114,10 @@
     }
   };
 
+  window.addEventListener("storage", function (event) {
+    if (event.key === "vt_products") refreshStore();
+  });
+
   window.VentechSql = {
     hydrate: hydrate,
     api: base,
@@ -126,4 +130,9 @@
     },
   };
   hydrate();
+  if (isPublished && !isAdminPage) {
+    window.setInterval(function () {
+      hydrateSupabase().catch(function () {});
+    }, 10000);
+  }
 })();

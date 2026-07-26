@@ -79,15 +79,20 @@ var Admin = (function () {
     set("activity", x);
   }
   return {
+    publishCatalog: function (items, showSuccess) {
+      if (!window.VentechSupabaseCatalog) return Promise.resolve(false);
+      return window.VentechSupabaseCatalog.syncProducts(items).then(function (count) {
+        if (showSuccess) alert(count + " producto(s) sincronizados. Ya se ven en la tienda.");
+        return true;
+      }).catch(function (error) {
+        alert(error.message || "El producto se guardó, pero no fue posible actualizar la tienda.");
+        return false;
+      });
+    },
     syncSupabaseCatalog: async function () {
       if (!window.VentechSupabaseCatalog)
         return alert("La conexión del catálogo aún se está preparando. Intenta nuevamente en unos segundos.");
-      try {
-        var count = await window.VentechSupabaseCatalog.syncProducts();
-        alert(count + " producto(s) publicados. Ya se verán desde cualquier dispositivo.");
-      } catch (error) {
-        alert(error.message || "No fue posible publicar el catálogo.");
-      }
+      await this.publishCatalog(products(), true);
     },
     syncDatabase: async function () {
       var a = products();
@@ -690,15 +695,28 @@ var Admin = (function () {
         var i = a.findIndex(function (x) {
           return x.id === p.id;
         });
+        if (i < 0) {
+          i = a.findIndex(function (x) {
+            return String(x.name || "").trim().toLowerCase() === p.name.trim().toLowerCase();
+          });
+          if (i >= 0) p.id = a[i].id;
+        }
         if (i >= 0) a[i] = p;
         else a.push(p);
+        a = a.filter(function (item, index, list) {
+          var name = String(item.name || "").trim().toLowerCase();
+          return list.findIndex(function (other) {
+            return String(other.name || "").trim().toLowerCase() === name;
+          }) === index;
+        });
         try {
           set("products", a);
         } catch (error) {
           alert("No fue posible guardar porque las imágenes ocupan demasiado espacio. Usa hasta 5 imágenes livianas por color (preferiblemente menores de 500 KB).");
           return;
         }
-        if (window.VentechSql) {
+        self.publishCatalog(a, false);
+        if (window.VentechSql && /^(localhost|127\.0\.0\.1)$/i.test(location.hostname)) {
           window.VentechSql.guardarProductos(a).catch(function () {
             alert(
               "El producto quedó guardado en esta pantalla, pero no se pudo insertar en SQL Server. Verifica que el servicio esté abierto.",
@@ -726,6 +744,7 @@ var Admin = (function () {
       set("products", a);
       log("Estado de producto modificado: " + p.name);
       this.products();
+      this.publishCatalog(a, false);
     },
     deleteProduct: function (id) {
       if (confirm("¿Eliminar este producto?")) {
@@ -733,14 +752,13 @@ var Admin = (function () {
           return x.id === id;
         });
         if (!p) return alert("No fue posible encontrar el producto. Recarga el panel.");
-        set(
-          "products",
-          products().filter(function (x) {
-            return x.id !== id;
-          }),
-        );
+        var remaining = products().filter(function (x) {
+          return x.id !== id;
+        });
+        set("products", remaining);
         log("Producto eliminado: " + p.name);
         this.products();
+        this.publishCatalog(remaining, false);
       }
     },
     sales: function () {

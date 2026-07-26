@@ -16,8 +16,19 @@ async function currentStaff() {
 }
 
 async function syncProducts(products = readLocalProducts()) {
-  if (!products.length) throw new Error("No hay productos locales para migrar.");
+  const unique = new Map();
+  products.forEach((product) => {
+    const name = String(product.name || "").trim().toLowerCase();
+    if (name) unique.set(name, product);
+  });
+  products = Array.from(unique.values());
+  localStorage.setItem("vt_products", JSON.stringify(products));
   await currentStaff();
+  if (!products.length) {
+    const { error } = await supabase.from("products").delete().gte("id", 0);
+    if (error) throw error;
+    return 0;
+  }
   const { data: categories, error: categoryError } = await supabase.from("categories").select("id,name");
   if (categoryError) throw categoryError;
   const categoryMap = new Map((categories || []).map((item) => [item.name.toLowerCase(), item.id]));
@@ -42,6 +53,14 @@ async function syncProducts(products = readLocalProducts()) {
     };
     const { error } = await supabase.from("products").upsert(payload, { onConflict: "legacy_id" });
     if (error) throw error;
+  }
+  const localIds = products.map((product) => Number(product.id)).filter(Number.isFinite);
+  const { data: remoteProducts, error: remoteError } = await supabase.from("products").select("legacy_id");
+  if (remoteError) throw remoteError;
+  const staleIds = (remoteProducts || []).map((product) => Number(product.legacy_id)).filter((id) => Number.isFinite(id) && !localIds.includes(id));
+  if (staleIds.length) {
+    const { error: deleteError } = await supabase.from("products").delete().in("legacy_id", staleIds);
+    if (deleteError) throw deleteError;
   }
   const backup = JSON.stringify(products);
   if (backup.length < 1000000) {
