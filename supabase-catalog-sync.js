@@ -1,7 +1,11 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const supabase = createClient("https://yatuqlksqovgkczzumzo.supabase.co", "sb_publishable__KIj1REr4hQXJeoAlYu1lA_1tLL6yDn");
-const readLocalProducts = () => JSON.parse(localStorage.getItem("vt_products") || "[]");
+const readLocalProducts = () => {
+  const current = JSON.parse(localStorage.getItem("vt_products") || "[]");
+  if (current.length) return current;
+  return JSON.parse(localStorage.getItem("vt_products_backup") || "[]");
+};
 const cleanColors = (value) => Array.isArray(value) ? value : String(value || "").split(",").map((x) => x.trim()).filter(Boolean);
 
 async function currentStaff() {
@@ -39,6 +43,7 @@ async function syncProducts(products = readLocalProducts()) {
     const { error } = await supabase.from("products").upsert(payload, { onConflict: "legacy_id" });
     if (error) throw error;
   }
+  localStorage.setItem("vt_products_backup", JSON.stringify(products));
   return products.length;
 }
 

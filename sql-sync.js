@@ -9,6 +9,7 @@
   var originalSet = localStorage.setItem.bind(localStorage);
   var sending = false;
   var isPublished = !/^(localhost|127\\.0\\.0\\.1)$/i.test(window.location.hostname);
+  var isAdminPage = /(?:administracion|admin)\\.html$/i.test(window.location.pathname);
 
   function status(message, error) {
     var element = document.getElementById("sqlStatus");
@@ -25,6 +26,10 @@
 
   function mapSupabaseProduct(product) {
     var images = Array.isArray(product.images) ? product.images : [];
+    var colorVariants = Array.isArray(product.color_variants) ? product.color_variants : [];
+    var variantStock = colorVariants.reduce(function (total, variant) {
+      return total + Math.max(0, Number(variant.stock) || 0);
+    }, 0);
     return {
       id: Number(product.id),
       name: product.name,
@@ -32,13 +37,13 @@
       price: Number(product.price) || 0,
       discount: Number(product.discount_percent) || 0,
       vat: Number(product.vat_percent) || 19,
-      stock: Number(product.stock) || 0,
+      stock: colorVariants.length ? variantStock : Number(product.stock) || 0,
       enabled: product.status === "activo",
       description: product.description || "",
       specs: product.specifications || "",
       capacity: product.capacity || "",
       colors: product.available_colors || [],
-      colorVariants: Array.isArray(product.color_variants) ? product.color_variants : [],
+      colorVariants: colorVariants,
       image: images[0] || "",
       images: images,
       featured: Boolean(product.featured),
@@ -52,7 +57,18 @@
     );
     if (!response.ok) throw new Error("No fue posible cargar el catálogo compartido.");
     var products = (await response.json()).map(mapSupabaseProduct);
-    originalSet("vt_products", JSON.stringify(products));
+    var localProducts = JSON.parse(localStorage.getItem("vt_products") || "[]");
+    var backupProducts = JSON.parse(localStorage.getItem("vt_products_backup") || "[]");
+    if (products.length) {
+      originalSet("vt_products", JSON.stringify(products));
+      originalSet("vt_products_backup", JSON.stringify(products));
+    } else if (isAdminPage && localProducts.length) {
+      originalSet("vt_products_backup", JSON.stringify(localProducts));
+    } else if (isAdminPage && backupProducts.length) {
+      originalSet("vt_products", JSON.stringify(backupProducts));
+    } else if (!isAdminPage) {
+      originalSet("vt_products", "[]");
+    }
     refreshStore();
   }
 

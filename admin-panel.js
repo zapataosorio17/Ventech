@@ -4,7 +4,11 @@ var Admin = (function () {
     return JSON.parse(localStorage.getItem(k + n) || "[]");
   }
   function set(n, v) {
-    localStorage.setItem(k + n, JSON.stringify(v));
+    var json = JSON.stringify(v);
+    localStorage.setItem(k + n, json);
+    if (n === "products" && Array.isArray(v) && v.length) {
+      localStorage.setItem(k + "products_backup", json);
+    }
   }
   function products() {
     return get("products");
