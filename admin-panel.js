@@ -1139,30 +1139,72 @@ var Admin = (function () {
       }
     },
     report: function (which) {
-      var rows =
-        which === "products"
-          ? products()
-          : which === "sales"
-            ? get("orders")
-            : staff().concat(get("users"));
-      var text = rows.length
-        ? Object.keys(rows[0]).join(",") +
-          "\n" +
-          rows
-            .map(function (r) {
-              return Object.keys(r)
-                .map(function (x) {
-                  return '"' + String(r[x]).replace(/"/g, '""') + '"';
-                })
-                .join(",");
-            })
-            .join("\n")
-        : "Sin datos";
-      var b = new Blob([text], { type: "text/csv" }),
-        a = document.createElement("a");
-      a.href = URL.createObjectURL(b);
-      a.download = "reporte-" + which + "-ventech.csv";
-      a.click();
+      var headers = [], rows = [];
+      if (which === "products") {
+        headers = ["Producto", "Categoría", "Precio (COP)", "Descuento (%)", "IVA (%)", "Color", "Cantidad", "Estado", "Capacidad"];
+        products().forEach(function (product) {
+          var variants = Array.isArray(product.colorVariants) && product.colorVariants.length
+            ? product.colorVariants
+            : [{ color: product.colors || "Sin color", stock: product.stock || 0 }];
+          variants.forEach(function (variant) {
+            rows.push([
+              product.name,
+              product.category,
+              Number(product.price) || 0,
+              Number(product.discount) || 0,
+              product.vat === undefined ? 19 : Number(product.vat) || 0,
+              variant.color || "Sin color",
+              Math.max(0, Number(variant.stock) || 0),
+              product.enabled === false ? "Inhabilitado" : "Activo",
+              product.capacity || ""
+            ]);
+          });
+        });
+      } else if (which === "sales") {
+        headers = ["Pedido", "Fecha", "Estado", "Total (COP)", "Método de pago", "Dirección", "Cantidad de productos"];
+        get("orders").forEach(function (order) {
+          rows.push([
+            order.id,
+            order.date || "",
+            order.status || "",
+            Number(order.total) || 0,
+            order.payment || order.paymentMethod || "",
+            order.address || "",
+            (order.items || []).reduce(function (sum, item) { return sum + (Number(item.qty || item.quantity) || 0); }, 0)
+          ]);
+        });
+      } else {
+        headers = ["Nombre", "Correo", "Teléfono", "Rol", "Estado", "Fecha de registro"];
+        staff().concat(get("users")).forEach(function (user) {
+          rows.push([
+            user.name || "",
+            user.email || "",
+            user.phone || "",
+            user.role || "Cliente",
+            user.enabled === false || user.active === false ? "Inhabilitado" : "Activo",
+            user.created || user.date || ""
+          ]);
+        });
+      }
+      function csvCell(value) {
+        var clean = String(value === undefined || value === null ? "" : value)
+          .replace(/\r?\n/g, " ")
+          .replace(/"/g, '""');
+        return '"' + clean + '"';
+      }
+      var text = "sep=;\r\n" + headers.map(csvCell).join(";") +
+        (rows.length ? "\r\n" + rows.map(function (row) {
+          return row.map(csvCell).join(";");
+        }).join("\r\n") : "\r\n" + csvCell("Sin datos"));
+      var blob = new Blob(["\ufeff" + text], { type: "text/csv;charset=utf-8" });
+      var link = document.createElement("a");
+      var url = URL.createObjectURL(blob);
+      link.href = url;
+      link.download = "reporte-" + which + "-ventech-" + new Date().toISOString().slice(0, 10) + ".csv";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
     },
     savePromotion: function (e) {
       e.preventDefault();
