@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ventech | Administración</title>
+    <link rel="stylesheet" href="admin-plus.css?v=7" />
+  </head>
+  <body>
+    <section id="loginView" class="login">
+      <div class="login-card">
+        <span class="brand">Ven<span>Tech</span></span>
+        <p class="tag">ACCESO INTERNO</p>
+        <h1 id="accessTitle">Iniciar sesión</h1>
+        <p id="accessText">
+          Solo los usuarios creados por un administrador pueden entrar al panel.
+        </p>
+        <div class="tabs">
+          <button id="signInTab" class="active" onclick="Admin.mode('login')">
+            Ingresar</button
+          ><button id="setupTab" onclick="Admin.mode('setup')">
+            Primer administrador
+          </button>
+        </div>
+        <form id="signInForm" onsubmit="Admin.login(event)">
+          <label
+            >Correo corporativo<input
+              id="loginEmail"
+              type="email"
+              required /></label
+          ><label
+            >Contraseña<input
+              id="loginPassword"
+              type="password"
+              required /></label
+          ><button>Ingresar al panel</button>
+        </form>
+        <form id="setupForm" class="hidden" onsubmit="Admin.setup(event)">
+          <label>Nombre completo<input id="setupName" required /></label
+          ><label
+            >Correo corporativo<input
+              id="setupEmail"
+              type="email"
+              required /></label
+          ><label
+            >Contraseña<input
+              id="setupPassword"
+              type="password"
+              required /></label
+          ><label
+            >Confirmar contraseña<input
+              id="setupConfirm"
+              type="password"
+              required /></label
+          ><label>Teléfono<input id="setupPhone" /></label>
+          <p class="notice">
+            Esta opción solo crea el primer administrador local. Después, los
+            demás empleados se crean desde Usuarios.
+          </p>
+          <button>Crear administrador</button>
+        </form>
+      </div>
+    </section>
+    <div id="panelView" class="shell hidden">
+      <aside class="side">
+        <span class="brand">Ven<span>Tech</span></span>
+        <p>ADMINISTRACIÓN</p>
+        <button
+          class="active"
+          data-section="dashboard"
+          onclick="Admin.show('dashboard', this)"
+        >
+          ▦ Dashboard</button
+        ><button data-section="products" onclick="Admin.show('products', this)">
+          ◫ Productos</button
+        ><button data-section="sales" onclick="Admin.show('sales', this)">
+          ↗ Ventas</button
+        ><button data-section="users" onclick="Admin.show('users', this)">
+          ♙ Usuarios</button
+        ><button
+          data-section="inventory"
+          onclick="Admin.show('inventory', this)"
+        >
+          ▤ Inventario</button
+        ><button data-section="reports" onclick="Admin.show('reports', this)">
+          ◈ Reportes</button
+        ><button data-section="settings" onclick="Admin.show('settings', this)">
+          ⚙ Configuración
+        </button>
+        <div class="bottom">
+          <button onclick="Admin.logout()">← Cerrar sesión</button>
+        </div>
+      </aside>
+      <main class="main">
+        <header class="top">
+          <div>
+            <p class="tag">PANEL INTERNO</p>
+            <h1 id="pageTitle">Dashboard</h1>
+          </div>
+          <div class="actions"><button id="addProduct" class="btn" onclick="Admin.productForm()">
+              + Agregar producto
+            </button><button class="btn alt" type="button" onclick="Admin.syncSupabaseCatalog()">Publicar catálogo</button></div>
+        </header>
+        <section id="dashboardPage" class="report-dashboard">
+          <div class="report-heading">
+            <div>
+              <p class="tag">REPORTE GENERAL</p>
+              <h2>Resumen operativo</h2>
+              <small>Indicadores actualizados del negocio.</small>
+            </div>
+            <button class="btn alt" onclick="Admin.dashboard()">
+              ↻ Actualizar datos
+            </button>
+          </div>
+          <div class="dashboard-filters">
+            <span>Filtrar reporte</span>
+            <label
+              >Desde<input
+                id="dashDateFrom"
+                type="date"
+                onchange="Admin.dashboard()"
+            /></label>
+            <label
+              >Hasta<input
+                id="dashDateTo"
+                type="date"
+                onchange="Admin.dashboard()"
+            /></label>
+            <label
+              >Estado<select id="dashState" onchange="Admin.dashboard()">
+                <option value="">Todos los estados</option>
+                <option>Procesando</option>
+                <option>En camino</option>
+                <option>Entregado</option>
+                <option>Cancelado</option>
+              </select></label
+            >
+            <button
+              class="btn alt"
+              type="button"
+              onclick="Admin.clearDashboardFilters()"
+            >
+              Limpiar filtros
+            </button>
+          </div>
+          <div class="grid4 report-metrics">
+            <article class="metric report-metric sales">
+              <span>▣</span>
+              <div>
+                <small>Ventas netas</small><b id="salesMetric">$ 0</b
+                ><em id="salesChange">Ventas registradas</em>
+              </div>
+            </article>
+            <article class="metric report-metric orders">
+              <span>✓</span>
+              <div>
+                <small>Pedidos</small><b id="ordersMetric">0</b
+                ><em id="ordersChange">En todos los estados</em>
+              </div>
+            </article>
+            <article class="metric report-metric clients">
+              <span>♙</span>
+              <div>
+                <small>Clientes</small><b id="customersMetric">0</b
+                ><em id="customersChange">Clientes registrados</em>
+              </div>
+            </article>
+            <article class="metric report-metric products">
+              <span>◈</span>
+              <div>
+                <small>Productos</small><b id="productsMetric">0</b
+                ><em id="productsChange">En catálogo</em>
+              </div>
+            </article>
+          </div>
+          <div class="report-grid main-report-grid">
+            <article class="card report-card trend-card">
+              <div class="report-card-head">
+                <div>
+                  <h3>Rendimiento comercial</h3>
+                  <small>Comportamiento de ventas por pedido</small>
+                </div>
+                <span class="report-legend">● Ventas</span>
+              </div>
+              <div id="salesTrend" class="sales-trend"></div>
+            </article>
+            <article class="card report-card category-card">
+              <div class="report-card-head">
+                <div>
+                  <h3>Distribución por categoría</h3>
+                  <small>Productos disponibles por categoría</small>
+                </div>
+              </div>
+              <div id="categoryReport" class="category-report"></div>
+            </article>
+          </div>
+          <div class="report-grid secondary-report-grid">
+            <article class="card report-card">
+              <div class="report-card-head">
+                <div>
+                  <h3>Estado de pedidos</h3>
+                  <small>Seguimiento de operaciones</small>
+                </div>
+              </div>
+              <div id="orderStatusReport" class="order-status-report"></div>
+            </article>
+            <article class="card report-card">
+              <div class="report-card-head">
+                <div>
+                  <h3>Alertas de inventario</h3>
+                  <small>Productos que requieren atención</small>
+                </div>
+              </div>
+              <div id="alerts" class="report-alerts"></div>
+            </article>
+          </div>
+          <article class="card report-card activity-report">
+            <div class="report-card-head">
+              <div>
+                <h3>Actividad reciente</h3>
+                <small>Últimos movimientos registrados en el panel</small>
+              </div>
+            </div>
+            <div class="scroll">
+              <table class="activity-table">
+                <thead>
+                  <tr>
+                    <th>Actividad</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="recentActivity"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+        <section id="productsPage" class="hidden">
+          <article class="card">
+            <div class="toolbar">
+              <input
+                id="productSearch"
+                oninput="Admin.products()"
+                placeholder="Buscar producto"
+              /><select id="productState" onchange="Admin.products()">
+                <option value="">Todos los estados</option>
+                <option value="low">Stock bajo</option>
+                <option value="disabled">Inhabilitados</option></select
+              ><button class="right btn" onclick="Admin.productForm()">
+                + Agregar producto
+              </button><button class="btn alt" type="button" onclick="Admin.syncSupabaseCatalog()">Publicar catálogo</button></div>
+            <div class="scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Descuento</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="productRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+        <section id="salesPage" class="hidden">
+          <article class="card">
+            <div class="toolbar">
+              <input
+                id="saleSearch"
+                oninput="Admin.sales()"
+                placeholder="Buscar venta o pedido"
+              /><select id="saleStatus" onchange="Admin.sales()">
+                <option value="">Todos los estados</option>
+                <option>Procesando</option>
+                <option>En camino</option>
+                <option>Entregado</option>
+                <option>Cancelado</option></select
+              ><label class="toolbar-date"
+                >Desde<input
+                  id="saleDateFrom"
+                  type="date"
+                  onchange="Admin.sales()" /></label
+              ><label class="toolbar-date"
+                >Hasta<input
+                  id="saleDateTo"
+                  type="date"
+                  onchange="Admin.sales()" /></label
+              ><button
+                class="btn alt"
+                type="button"
+                onclick="Admin.clearSalesFilters()"
+              >
+                Limpiar</button
+              ><button class="right btn" onclick="Admin.saleForm()">
+                + Venta física
+              </button>
+            </div>
+            <div id="salesRows"></div>
+          </article>
+        </section>
+        <section id="usersPage" class="hidden">
+          <article class="card">
+            <div class="toolbar">
+              <input
+                id="userSearch"
+                oninput="Admin.users()"
+                placeholder="Buscar usuario"
+              /><button class="right btn" onclick="Admin.userForm()">
+                + Crear usuario
+              </button>
+            </div>
+            <div id="userRows"></div>
+          </article>
+        </section>
+        <section id="inventoryPage" class="hidden">
+          <article class="card">
+            <h2>Gestión de inventario</h2>
+            <p class="notice">
+              Las modificaciones guardadas aquí se reflejan en la tienda
+              principal y activan alertas cuando el stock es de 5 unidades o
+              menos.
+            </p>
+            <div class="scroll inventory-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Descuento</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="inventoryRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+        <section id="reportsPage" class="reports-hub hidden">
+          <div class="reports-banner">
+            <div>
+              <p class="tag">CENTRO DE REPORTES</p>
+              <h2>Información lista para analizar</h2>
+              <p>
+                Descarga archivos CSV actualizados para revisar inventario,
+                ventas y usuarios.
+              </p>
+            </div>
+            <div class="reports-banner-icon">↧</div>
+          </div>
+          <div class="report-download-grid">
+            <article class="report-download-card inventory-report">
+              <span class="report-file-icon">▤</span>
+              <p class="report-type">INVENTARIO</p>
+              <h3>Reporte de inventario</h3>
+              <p>
+                Consulta existencias, precios, descuentos, IVA y alertas de
+                stock bajo.
+              </p>
+              <ul>
+                <li>Productos disponibles</li>
+                <li>Stock y estado actual</li>
+                <li>Categorías y precios</li>
+              </ul>
+              <button class="btn" onclick="Admin.report('products')">
+                ↓ Descargar inventario
+              </button>
+            </article>
+            <article class="report-download-card sales-report">
+              <span class="report-file-icon">▥</span>
+              <p class="report-type">COMERCIAL</p>
+              <h3>Reporte de ventas</h3>
+              <p>
+                Revisa pedidos, totales, estados y datos útiles para el
+                seguimiento comercial.
+              </p>
+              <ul>
+                <li>Pedidos realizados</li>
+                <li>Estados de venta</li>
+                <li>Totales facturados</li>
+              </ul>
+              <button class="btn" onclick="Admin.report('sales')">
+                ↓ Descargar ventas
+              </button>
+            </article>
+            <article class="report-download-card users-report">
+              <span class="report-file-icon">♙</span>
+              <p class="report-type">ADMINISTRACIÓN</p>
+              <h3>Reporte de usuarios</h3>
+              <p>
+                Obtén el listado de clientes y personal para control
+                administrativo.
+              </p>
+              <ul>
+                <li>Roles y permisos</li>
+                <li>Estado de las cuentas</li>
+                <li>Información de contacto</li>
+              </ul>
+              <button class="btn" onclick="Admin.report('users')">
+                ↓ Descargar usuarios
+              </button>
+            </article>
+          </div>
+          <article class="reports-help card">
+            <span>ⓘ</span>
+            <div>
+              <b>Archivos compatibles con Excel y Power BI</b>
+              <p>
+                Los reportes se descargan en formato CSV para analizarlos,
+                compartirlos o incorporarlos a tus tableros.
+              </p>
+            </div>
+          </article>
+        </section>
+        <section id="settingsPage" class="hidden">
+          <article class="card">
+            <h2>Promoción principal</h2>
+            <form onsubmit="Admin.savePromotion(event)">
+              <label
+                >Título<input
+                  id="promotionTitle"
+                  value="Conecta con la tecnología que necesitas." /></label
+              ><label
+                >Texto<textarea id="promotionText">
+Promociones y productos tecnológicos para ti.</textarea></label
+              ><label
+                >Imagen promocional<input
+                  id="promotionFile"
+                  type="file"
+                  accept="image/*"
+                  required /></label
+              ><button class="btn">Publicar promoción</button>
+            </form>
+          </article>
+          <article class="card">
+            <h2>Configuración</h2>
+            <div class="notice">
+              Los datos personales de los empleados solo pueden ser modificados
+              por administradores o supervisores.
+            </div>
+            <form onsubmit="Admin.settings(event)">
+              <label
+                >Nombre de empresa<input
+                  id="companyName"
+                  value="Ventech" /></label
+              ><label>Teléfono de empresa<input id="companyPhone" /></label
+              ><label
+                >Dirección de facturación<input id="companyAddress" /></label
+              ><label>Foto del perfil (URL)<input id="profileImage" /></label
+              ><button>Guardar configuración</button>
+            </form>
+          </article>
+        </section>
+      </main>
+    </div>
+    <dialog id="productDialog">
+      <button class="close" onclick="productDialog.close()">×</button>
+      <h2 id="productFormTitle">Producto</h2>
+      <form onsubmit="Admin.saveProduct(event)">
+        <input id="editProductId" type="hidden" /><label
+          >Nombre<input id="productName" required /></label
+        ><label
+          >Categoría<select id="productCategory" required>
+            <option value="">Selecciona una categoría</option>
+          </select></label
+        ><button
+          class="btn alt"
+          type="button"
+          onclick="Admin.manageCategories()"
+        >
+          Administrar categorías</button
+        ><label
+          >Precio<input
+            id="productPrice"
+            type="number"
+            min="0"
+            required /></label
+        ><label
+          >Descuento (%)<input
+            id="productDiscount"
+            type="number"
+            min="0"
+            max="99"
+            value="0" /></label
+        ><label
+          >IVA (%)<input
+            id="productVat"
+            type="number"
+            min="0"
+            max="100"
+            value="19" /></label
+        ><label
+          >Stock<input
+            id="productStock"
+            type="number"
+            min="0"
+            required /></label
+        ><label
+          >Estado<select id="productEnabled">
+            <option value="true">Activo</option>
+            <option value="false">Inhabilitado</option>
+          </select></label
+        ><label
+          >Descripción<textarea id="productDescription" required></textarea>
+        </label>
+        <div class="product-attributes">
+          <label
+            >Capacidad
+            <input
+              id="productCapacity"
+              placeholder="Ej. 512 GB SSD o 128 GB"
+            /> </label          ><div class="color-variant-field">
+            <span class="field-label">Colores e imágenes por variante</span>
+            <div id="productColorVariants" class="color-variant-list"></div>
+            <button class="btn alt color-add" type="button" onclick="Admin.addColorVariant()">+ Agregar color</button>
+            <small>Cada color puede tener hasta 5 imágenes. En la tienda aparecerá como una lista desplegable.</small>
+          </div>
+        </div>
+        <label>Especificaciones<textarea id="productSpecs"></textarea></label
+        >
+        <div class="actions">
+          <button class="btn alt" type="button" onclick="productDialog.close()">
+            Cancelar</button
+          ><button>Guardar producto</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="categoryDialog">
+      <button class="close" onclick="categoryDialog.close()">×</button>
+      <h2>Administrar categorías</h2>
+      <form onsubmit="Admin.createCategory(event)" class="toolbar">
+        <input
+          id="newCategoryName"
+          placeholder="Nueva categoría tecnológica"
+          required
+        /><button class="btn">Agregar categoría</button>
+      </form>
+      <div id="categoryRows" class="category-list"></div>
+    </dialog>
+    <dialog id="userDialog">
+      <button class="close" onclick="userDialog.close()">×</button>
+      <h2>Crear usuario</h2>
+      <form onsubmit="Admin.saveUser(event)">
+        <label>Nombre completo<input id="userName" required /></label
+        ><label>Correo<input id="userEmail" type="email" required /></label
+        ><label
+          >Rol<select id="userRole">
+            <option>Empleado</option>
+            <option>Supervisor</option>
+            <option>Administrador</option>
+            <option>Cliente</option>
+          </select></label
+        ><label
+          >Contraseña temporal<input
+            id="userPassword"
+            type="password"
+            required /></label
+        ><label
+          >Permisos del panel<select id="userAccess">
+            <option value="dashboard,products,sales,inventory">
+              Operación
+            </option>
+            <option
+              value="dashboard,products,sales,inventory,users,reports,settings"
+            >
+              Total
+            </option>
+          </select></label
+        >
+        <div class="actions"><button>Crear usuario</button></div>
+      </form>
+    </dialog>
+    <dialog id="saleDialog">
+      <button class="close" onclick="saleDialog.close()">×</button>
+      <h2>Registrar venta física</h2>
+      <form onsubmit="Admin.saveSale(event)">
+        <label>Producto<select id="saleProduct"></select></label
+        ><label
+          >Cantidad<input
+            id="saleQty"
+            type="number"
+            min="1"
+            value="1"
+            required /></label
+        ><label
+          >Tipo de entrega<select id="saleDelivery">
+            <option>Tienda física</option>
+            <option>Envío a domicilio</option>
+          </select></label
+        ><label
+          >Correo del cliente (opcional)<input id="saleEmail" type="email"
+        /></label>
+        <div class="actions"><button>Registrar venta</button></div>
+      </form>
+    </dialog>
+    <dialog id="orderStatusDialog">
+      <button class="close" type="button" onclick="orderStatusDialog.close()">
+        ×
+      </button>
+      <h2>Actualizar estado del pedido</h2>
+      <p id="orderStatusInfo" class="notice"></p>
+      <form onsubmit="Admin.saveOrderStatus(event)">
+        <input id="orderStatusId" type="hidden" />
+        <label
+          >Nuevo estado
+          <select id="orderStatusValue" required>
+            <option>Procesando</option>
+            <option>En camino</option>
+            <option>Entregado</option>
+          </select>
+        </label>
+        <p class="notice">
+          El cliente verá este cambio en la sección Mis pedidos.
+        </p>
+        <div class="actions">
+          <button
+            class="btn alt"
+            type="button"
+            onclick="orderStatusDialog.close()"
+          >
+            Cancelar
+          </button>
+          <button class="btn" type="submit">Guardar estado</button>
+        </div>
+      </form>
+    </dialog>
+    <script type="module" src="supabase-admin-guard.js?v=1"></script>
+    <script src="admin-panel.js?v=16"></script>
+    <script>
+      Admin.start();
+    </script>
+    <script src="sql-sync.js?v=5"></script>
+    <script type="module" src="supabase-catalog-sync.js?v=1"></script>
+  </body>
+</html>

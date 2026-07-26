@@ -1,0 +1,10 @@
+VENTECH - PUBLICACIÓN ACADÉMICA EN CLOUDFLARE
+
+1. En Supabase > SQL Editor ejecuta Database/09_supabase_variantes_color.sql.
+2. Verifica que la tabla public.products tenga la columna color_variants (jsonb).
+3. Publica el contenido completo de esta carpeta como sitio estático en Cloudflare Pages.
+4. El archivo de entrada es index.html.
+5. Los pagos PSE y tarjeta son simulaciones académicas; no se procesa dinero real.
+6. En Administración, cada color admite hasta cinco imágenes. El catálogo cambia la galería al seleccionar el color.
+
+Nota: SQL Server y la API ASP.NET se usan en desarrollo local. La publicación estática consulta el catálogo compartido de Supabase.

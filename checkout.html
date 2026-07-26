@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ventech | Checkout</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="Ventech.html">Ven<span>Tech</span></a>
+      <nav>
+        <a href="Ventech.html">Seguir comprando</a
+        ><a href="orders.html">Mis compras</a>
+      </nav>
+    </header>
+    <main class="checkout">
+      <form class="card" onsubmit="VT.order(event)">
+        <p class="tag">FINALIZAR PEDIDO</p>
+        <h1>Entrega y pago</h1>
+        <h2>Cliente</h2>
+        <p id="customer" class="notice"></p>
+        <h2>Dirección de envío</h2>
+        <label>Departamento<input id="dept" required /></label
+        ><label>Ciudad<input id="city" required /></label
+        ><label>Dirección completa<input id="address" required /></label
+        ><label>Barrio<input id="neighborhood" required /></label>
+        <h2>Pago académico</h2><p class="notice">Simulación: no ingreses datos bancarios reales y no se realizará ningún cobro. <a href="terminos.html">Ver términos</a>.</p>
+        <label
+          ><input type="radio" name="pay" value="PSE" checked /> Transferencia
+          PSE (simulación)</label
+        ><label
+          ><input type="radio" name="pay" value="Tarjeta" /> Tarjeta
+          (simulación)</label
+        ><button class="button full">Confirmar pedido</button>
+      </form>
+      <aside class="card">
+        <h2>Resumen</h2>
+        <div id="checkoutItems"></div>
+        <hr />
+        <p class="total">Total <b id="checkoutTotal">$0</b></p>
+        <small>Entrega estimada: 2 a 5 días hábiles.</small>
+      </aside>
+    </main>
+    <script src="app.js?v=6"></script>
+    <script>
+      VT.checkout();
+    </script>
+    <script>
+      (function () {
+        var money = function (n) {
+            return new Intl.NumberFormat("es-CO", {
+              style: "currency",
+              currency: "COP",
+              maximumFractionDigits: 0,
+            }).format(n);
+          },
+          cart = JSON.parse(localStorage.getItem("vt_cart") || "[]"),
+          products = JSON.parse(localStorage.getItem("vt_products") || "[]"),
+          user = JSON.parse(localStorage.getItem("vt_user") || "null"),
+          customerBox = document.getElementById("customer"),
+          itemsBox = document.getElementById("checkoutItems"),
+          totalBox = document.getElementById("checkoutTotal"),
+          confirmButton = document.querySelector("form button.button");
+        customerBox.textContent = user
+          ? (user.name || "Cliente") + " - " + (user.email || "")
+          : "Inicia sesion para continuar";
+        if (!cart.length) {
+          itemsBox.innerHTML =
+            '<p class="notice">Tu carrito esta vacio. Regresa a la tienda y agrega productos antes de continuar.</p>';
+          totalBox.textContent = money(0);
+          if (confirmButton) confirmButton.disabled = true;
+          return;
+        }
+        var base = 0,
+          discount = 0,
+          iva = 0,
+          html = "";
+        cart.forEach(function (line) {
+          var p = products.find(function (x) {
+            return x.id === line.id;
+          }) || { name: "Producto no disponible", price: 0, discount: 0 };
+          var unit = Number(p.price) || 0,
+            d = (unit * line.qty * (Number(p.discount) || 0)) / 100;
+          base += unit * line.qty;
+          discount += d;
+          var rate = Number(p.vat);
+          if (isNaN(rate)) rate = 19;
+          iva += Math.round(((unit * line.qty - d) * rate) / 100);
+          html +=
+            "<p>" +
+            line.qty +
+            " x " +
+            p.name +
+            " <b>" +
+            money(unit * line.qty - d) +
+            "</b></p>";
+        });
+        var subtotal = base - discount,
+          shipping = 0,
+          total = subtotal + iva + shipping;
+        itemsBox.innerHTML =
+          html +
+          "<hr><p>Productos <b>" +
+          money(base) +
+          "</b></p><p>Descuento <b>- " +
+          money(discount) +
+          "</b></p><p>IVA (19%) <b>" +
+          money(iva) +
+          "</b></p><p>Envio <b>" +
+          money(shipping) +
+          "</b></p>";
+        totalBox.textContent = money(total);
+        if (confirmButton) confirmButton.disabled = false;
+      })();
+    </script>
+    <script src="sql-sync.js"></script>
+  </body>
+</html>

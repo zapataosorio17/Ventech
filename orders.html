@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ventech | Mis compras</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="Ventech.html">Ven<span>Tech</span></a>
+      <nav>
+        <a href="Ventech.html">Inicio</a><a href="checkout.html">Carrito</a>
+      </nav>
+    </header>
+    <main class="page">
+      <p class="tag">MI CUENTA</p>
+      <h1>Historial de compras</h1>
+      <div class="filters">
+        <input
+          id="orderSearch"
+          oninput="VT.orders()"
+          placeholder="Buscar pedido"
+        /><select id="orderState" onchange="VT.orders()">
+          <option value="">Todos los estados</option>
+          <option>Procesando</option>
+          <option>En camino</option>
+          <option>Entregado</option>
+          <option>Cancelado</option>
+        </select>
+      </div>
+      <div id="orderList"></div>
+    </main>
+    <script src="app.js"></script>
+    <script>
+      VT.orders();
+    </script>
+  </body>
+</html>

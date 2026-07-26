@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ventech | Mi cuenta</title>
+    <link rel="stylesheet" href="customer.css?v=3" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="Ventech.html">Ven<span>Tech</span></a
+      ><a href="Ventech.html">← Seguir comprando</a>
+    </header>
+    <div class="shell">
+      <aside class="side">
+        <div class="profile">
+          <div class="avatar" id="avatar">VT</div>
+          <b id="profileName">Cliente</b><small id="profileEmail"></small>
+        </div>
+        <button class="active" onclick="Customer.show('overview', this)">
+          ▦ Resumen</button
+        ><button id="cartNav" onclick="Customer.show('cartProfile', this)">
+          🛒 Mi carrito
+        </button>
+        <button onclick="Customer.show('orders', this)">↗ Mis pedidos</button
+        ><button onclick="Customer.show('invoices', this)">
+          ▤ Mis facturas</button
+        ><button onclick="Customer.show('profile', this)">⚙ Mis datos</button
+        ><button onclick="Customer.logout()">← Cerrar sesión</button>
+      </aside>
+      <main class="content">
+        <section id="overview">
+          <header class="head">
+            <div>
+              <p class="tag">MI CUENTA</p>
+              <h1>Hola, <span id="greeting">cliente</span></h1>
+            </div>
+            <button class="button" onclick="Customer.show('orders')">
+              Ver pedidos
+            </button>
+          </header>
+          <div class="metrics">
+            <article class="metric">
+              <small>Compras realizadas</small><b id="orderMetric">0</b>
+            </article>
+            <article class="metric">
+              <small>Pedidos activos</small><b id="activeMetric">0</b>
+            </article>
+            <article class="metric">
+              <small>Facturas</small><b id="invoiceMetric">0</b>
+            </article>
+            <article class="metric">
+              <small>Total comprado</small><b id="spentMetric">$0</b>
+            </article>
+          </div>
+          <div class="twocol">
+            <article class="card">
+              <h2>Últimos pedidos</h2>
+              <div id="recentOrders"></div>
+            </article>
+            <article class="card">
+              <h2>Seguimiento</h2>
+              <div id="trackingSummary"></div>
+            </article>
+          </div>
+        </section>
+        <section id="cartProfile" class="hidden">
+          <header class="head">
+            <div>
+              <p class="tag">FINALIZAR COMPRA</p>
+              <h1>Mi carrito</h1>
+            </div>
+            <a class="button alt" href="Ventech.html">Seguir comprando</a>
+          </header>
+          <div class="checkout-grid">
+            <form class="card" onsubmit="Customer.placeOrder(event)">
+              <h2>Entrega y pago</h2>
+              <p class="notice" id="cartCustomer"></p>
+              <label>Departamento<input id="cartDepartment" required /></label>
+              <label>Ciudad<input id="cartCity" required /></label>
+              <label
+                >Dirección completa<input id="cartAddress" required
+              /></label>
+              <label>Barrio<input id="cartNeighborhood" required /></label>
+              <fieldset class="payment-options">
+                <legend>Método de pago</legend>
+                <label
+                  ><input type="radio" name="profilePay" value="PSE" checked />
+                  Transferencia PSE (simulación)</label
+                >
+                <label
+                  ><input type="radio" name="profilePay" value="Tarjeta" />
+                  Tarjeta (simulación)</label
+                >
+              </fieldset>
+              <div class="actions">
+                <button class="button" id="profileOrderButton">
+                  Confirmar pedido
+                </button>
+              </div>
+            </form>
+            <article class="card order-summary">
+              <h2>Resumen de compra</h2>
+              <div id="profileCartSummary"></div>
+            </article>
+          </div>
+        </section>
+        <section id="orders" class="hidden">
+          <header class="head">
+            <div>
+              <p class="tag">HISTORIAL</p>
+              <h1>Mis pedidos</h1>
+            </div>
+          </header>
+          <div class="toolbar">
+            <input
+              id="orderSearch"
+              oninput="Customer.orders()"
+              placeholder="Buscar pedido"
+            /><select id="orderFilter" onchange="Customer.orders()">
+              <option value="">Todos los estados</option>
+              <option>Procesando</option>
+              <option>En camino</option>
+              <option>Entregado</option>
+              <option>Cancelado</option>
+            </select>
+          </div>
+          <div id="ordersList"></div>
+        </section>
+        <section id="invoices" class="hidden">
+          <header class="head">
+            <div>
+              <p class="tag">FACTURACIÓN</p>
+              <h1>Mis facturas</h1>
+            </div>
+          </header>
+          <article class="card"><div id="invoiceList"></div></article>
+        </section>
+        <section id="profile" class="hidden">
+          <header class="head">
+            <div>
+              <p class="tag">PERFIL</p>
+              <h1>Mis datos</h1>
+            </div>
+          </header>
+          <article class="card">
+            <p class="notice">
+              Puedes actualizar tu información de contacto. El documento se
+              mantiene protegido y solo puede ser cambiado por soporte.
+            </p>
+            <form onsubmit="Customer.saveProfile(event)">
+              <label
+                >Nombres y apellidos<input id="customerName" required /></label
+              ><label
+                >Correo electrónico<input
+                  id="customerEmail"
+                  type="email"
+                  required /></label
+              ><label>Teléfono<input id="customerPhone" /></label
+              ><label>Documento<input id="customerDocument" disabled /></label
+              ><label
+                >Dirección principal<textarea
+                  id="customerAddress"
+                ></textarea></label
+              ><label
+                >Nueva contraseña (opcional)<input
+                  id="customerPassword"
+                  type="password"
+              /></label>
+              <div class="actions">
+                <button class="button">Guardar cambios</button>
+              </div>
+            </form>
+          </article>
+        </section>
+      </main>
+    </div>
+    <dialog id="invoiceDialog">
+      <button class="close" onclick="invoiceDialog.close()">×</button>
+      <div id="invoicePreview"></div>
+    </dialog>
+    <dialog id="productPreviewDialog" class="product-preview-dialog">
+      <button class="close" onclick="productPreviewDialog.close()">×</button>
+      <div id="productPreviewBody"></div>
+    </dialog>
+    <script src="customer.js?v=8"></script>
+    <script>
+      Customer.start();
+    </script>
+    <script src="sql-sync.js"></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ventech | Tecnología</title>
+    <link rel="stylesheet" href="main.css?v=5" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="Ventech.html">Ven<span>Tech</span></a>
+      <nav>
+        <a href="Ventech.html">Inicio</a><a href="#productos">Productos</a
+        ><a href="#ofertas">Ofertas</a>
+      </nav>
+      <form
+        class="header-search"
+        onsubmit="
+          event.preventDefault();
+          document
+            .getElementById('productos')
+            .scrollIntoView({ behavior: 'smooth' });
+        "
+      >
+        <input
+          id="headerSearch"
+          type="search"
+          placeholder="Buscar por producto, marca o categoría"
+          oninput="
+            document.getElementById('search').value = this.value;
+            VT.store();
+          "
+        /><button type="submit">Buscar</button>
+      </form>
+      <div>
+        <a href="mi-cuenta.html">Mi cuenta</a>
+        <button onclick="VT.cart()">🛒 <b id="count">0</b></button>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="hero-eyebrow"><span>NUEVO</span> RENDIMIENTO SIN LÍMITES</p>
+          <h1 id="heroTitle">Tecnología que <em>transforma</em> tu mundo</h1>
+          <p id="heroText">
+            Equipos de alto rendimiento diseñados para trabajar, estudiar y
+            disfrutar sin interrupciones.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#productos">Ver productos <b>›</b></a
+            ><a class="button pale" href="auth.html">Crear cuenta</a>
+          </div>
+          <div class="hero-benefits">
+            <span>✓ Compra segura<small>Protección garantizada</small></span
+            ><span>✓ Envíos a Colombia<small>Rápidos y confiables</small></span
+            ><span>✓ Garantía oficial<small>Productos originales</small></span>
+          </div>
+        </div>
+        <div class="art" id="promoArt">
+          <small>Productos tecnológicos<br /><b>simples y confiables</b></small>
+        </div>
+      </section>
+      <section class="features">
+        <article>
+          <b>Compra segura</b><small>Protección garantizada</small>
+        </article>
+        <article>
+          <b>Envíos a Colombia</b><small>Rápidos y confiables</small>
+        </article>
+        <article>
+          <b>Procesador de alto rendimiento</b
+          ><small>Velocidad y eficiencia para cada tarea.</small>
+        </article>
+        <article>
+          <b>Pantalla Full HD</b
+          ><small>Imágenes nítidas y colores vibrantes.</small>
+        </article>
+      </section>
+      <section id="productos">
+        <div class="title">
+          <div>
+            <p class="tag">CATÁLOGO</p>
+            <h2>Productos disponibles</h2>
+          </div>
+          <div class="filters">
+            <input
+              id="search"
+              oninput="VT.store()"
+              placeholder="Buscar producto"
+            /><select id="category" onchange="VT.store()">
+              <option value="">Todas las categorías</option></select
+            ><select id="price" onchange="VT.store()">
+              <option value="">Cualquier precio</option>
+              <option value="100000">Hasta $100.000</option>
+              <option value="500000">Hasta $500.000</option>
+            </select>
+          </div>
+        </div>
+        <div id="products" class="grid"></div>
+      </section>
+      <section class="offers" id="ofertas">
+        <div class="title">
+          <div>
+            <p class="tag">OFERTAS</p>
+            <h2>Descuentos activos</h2>
+          </div>
+        </div>
+        <div id="offers" class="grid"></div>
+      </section>
+    </main>
+    <footer>
+      <a class="logo" href="Ventech.html">Ven<span>Tech</span></a>
+      <p>© 2026 Ventech · Proyecto académico</p>
+      <div><a href="terminos.html">Términos y condiciones</a> · <a href="administracion.html">Acceso para empleados</a></div>
+    </footer>
+    <aside id="drawer">
+      <button class="x" onclick="VT.close()">×</button>
+      <h2>Carrito de compras</h2>
+      <div id="cartItems"></div>
+      <hr />
+      <p class="total">Total <b id="total">$0</b></p>
+      <button class="button full" type="button" onclick="VT.goCheckout()">
+        Ir al checkout
+      </button>
+    </aside>
+    <div id="shade" onclick="VT.close()"></div>
+    <dialog id="detail">
+      <button class="x" onclick="detail.close()">×</button>
+      <div id="detailBody"></div>
+    </dialog>
+    <dialog id="imageZoom" class="image-zoom">
+      <button class="x" onclick="imageZoom.close()">×</button
+      ><img id="zoomedProductImage" alt="Imagen ampliada del producto" />
+    </dialog>
+    <script src="app.js?v=16"></script>
+    <script>
+      VT.store();
+    </script>
+    <script src="sql-sync.js"></script>
+    <script src="promotion.js?v=1"></script>
+  </body>
+</html>

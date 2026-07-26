@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ventech | Dashboard analítico</title>
+    <link rel="stylesheet" href="dashboard-analitico.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="Ventech.html">Ven<span>Tech</span></a>
+      <nav>
+        <a href="administracion.html">Panel administrativo</a
+        ><button id="refresh">Actualizar datos</button>
+      </nav>
+    </header>
+    <main class="shell">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">ANALÍTICA DEL NEGOCIO</p>
+          <h1>Resumen ejecutivo</h1>
+          <p>
+            Ventas, inventario, pedidos y clientes con información directa de
+            SQL Server.
+          </p>
+        </div>
+        <p class="updated" id="updated">Cargando datos…</p>
+      </section>
+
+      <section class="metrics" aria-label="Indicadores principales">
+        <article>
+          <span>Ventas netas</span><b id="sales">—</b
+          ><small>Compras no canceladas</small>
+        </article>
+        <article>
+          <span>Pedidos totales</span><b id="orders">—</b
+          ><small id="ordersDetail">—</small>
+        </article>
+        <article>
+          <span>Clientes</span><b id="customers">—</b
+          ><small>Registrados y activos</small>
+        </article>
+        <article>
+          <span>Productos activos</span><b id="products">—</b
+          ><small id="stockDetail">—</small>
+        </article>
+      </section>
+
+      <section class="layout">
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">INGRESOS</p>
+              <h2>Ventas por categoría</h2>
+            </div>
+            <span class="legend">Total vendido</span>
+          </div>
+          <div id="categoryChart" class="bars"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">PEDIDOS</p>
+              <h2>Estado actual</h2>
+            </div>
+          </div>
+          <div id="orderStatus" class="status-list"></div>
+        </article>
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">TENDENCIA</p>
+              <h2>Evolución de ventas</h2>
+            </div>
+            <span class="legend">Ventas netas por día</span>
+          </div>
+          <div id="trendChart" class="trend-chart"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">PAGOS</p>
+              <h2>Métodos usados</h2>
+            </div>
+          </div>
+          <div id="paymentChart" class="payment-list"></div>
+          <div class="health">
+            <span>Valor cancelado</span><b id="cancelValue">—</b
+            ><small>Los pedidos anulados se excluyen de ventas netas.</small>
+          </div>
+        </article>
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">INVENTARIO</p>
+              <h2>Productos y alertas de stock</h2>
+            </div>
+            <span id="alertCount" class="warning">—</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Categoría</th>
+                  <th>Stock</th>
+                  <th>Mínimo</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryRows"></tbody>
+            </table>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">ACTIVIDAD RECIENTE</p>
+              <h2>Últimos pedidos</h2>
+            </div>
+          </div>
+          <div id="recentOrders" class="recent"></div>
+        </article>
+      </section>
+    </main>
+    <script src="dashboard-analitico.js?v=3"></script>
+  </body>
+</html>
