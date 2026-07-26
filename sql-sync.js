@@ -8,8 +8,8 @@
   var supabaseKey = "sb_publishable__KIj1REr4hQXJeoAlYu1lA_1tLL6yDn";
   var originalSet = localStorage.setItem.bind(localStorage);
   var sending = false;
-  var isPublished = !/^(localhost|127\\.0\\.0\\.1)$/i.test(window.location.hostname);
-  var isAdminPage = /(?:administracion|admin)\\.html$/i.test(window.location.pathname);
+  var isPublished = !/^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
+  var isAdminPage = /(?:administracion|admin)(?:\.html)?\/?$/i.test(window.location.pathname);
 
   function status(message, error) {
     var element = document.getElementById("sqlStatus");

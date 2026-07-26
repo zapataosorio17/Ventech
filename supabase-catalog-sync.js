@@ -43,7 +43,10 @@ async function syncProducts(products = readLocalProducts()) {
     const { error } = await supabase.from("products").upsert(payload, { onConflict: "legacy_id" });
     if (error) throw error;
   }
-  localStorage.setItem("vt_products_backup", JSON.stringify(products));
+  const backup = JSON.stringify(products);
+  if (backup.length < 1000000) {
+    try { localStorage.setItem("vt_products_backup", backup); } catch (_) {}
+  }
   return products.length;
 }
 

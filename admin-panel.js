@@ -6,8 +6,8 @@ var Admin = (function () {
   function set(n, v) {
     var json = JSON.stringify(v);
     localStorage.setItem(k + n, json);
-    if (n === "products" && Array.isArray(v) && v.length) {
-      localStorage.setItem(k + "products_backup", json);
+    if (n === "products" && Array.isArray(v) && v.length && json.length < 1000000) {
+      try { localStorage.setItem(k + "products_backup", json); } catch (_) {}
     }
   }
   function products() {
