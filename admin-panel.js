@@ -3,15 +3,19 @@ var Admin = (function () {
   function get(n) {
     return JSON.parse(localStorage.getItem(k + n) || "[]");
   }
+  var productCache = get("products");
   function set(n, v) {
     var json = JSON.stringify(v);
     localStorage.setItem(k + n, json);
+    if (n === "products") productCache = v.slice();
     if (n === "products" && Array.isArray(v) && v.length && json.length < 1000000) {
       try { localStorage.setItem(k + "products_backup", json); } catch (_) {}
     }
   }
   function products() {
-    return get("products");
+    var current = get("products");
+    if (current.length || !productCache.length) productCache = current;
+    return productCache.slice();
   }
   function staff() {
     return get("staff");
@@ -471,13 +475,13 @@ var Admin = (function () {
                 x.stock +
                 "</td><td>" +
                 pill(state(x)) +
-                '</td><td><button onclick="Admin.editProduct(' +
+                '</td><td><button type="button" onclick="Admin.editProduct(' +
                 x.id +
-                ')">Editar</button><button onclick="Admin.toggleProduct(' +
+                ')">Editar</button><button type="button" onclick="Admin.toggleProduct(' +
                 x.id +
                 ')">' +
                 (x.enabled === false ? "Habilitar" : "Inhabilitar") +
-                '</button><button onclick="Admin.deleteProduct(' +
+                '</button><button type="button" onclick="Admin.deleteProduct(' +
                 x.id +
                 ')">Eliminar</button></td></tr>'
               );
@@ -582,6 +586,10 @@ var Admin = (function () {
       var p = products().find(function (x) {
         return x.id === id;
       });
+      if (!p) {
+        alert("El producto ya no está disponible. Recarga el panel y vuelve a intentarlo.");
+        return;
+      }
       productFormTitle.textContent = "Editar producto";
       editProductId.value = p.id;
       productName.value = p.name;
@@ -713,6 +721,7 @@ var Admin = (function () {
         p = a.find(function (x) {
           return x.id === id;
         });
+      if (!p) return alert("No fue posible encontrar el producto. Recarga el panel.");
       p.enabled = p.enabled === false;
       set("products", a);
       log("Estado de producto modificado: " + p.name);
@@ -723,6 +732,7 @@ var Admin = (function () {
         var p = products().find(function (x) {
           return x.id === id;
         });
+        if (!p) return alert("No fue posible encontrar el producto. Recarga el panel.");
         set(
           "products",
           products().filter(function (x) {
