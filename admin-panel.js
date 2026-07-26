@@ -585,7 +585,6 @@ var Admin = (function () {
       productPrice.value = p.price;
       productDiscount.value = p.discount;
       productVat.value = p.vat === undefined ? 19 : p.vat;
-      productStock.value = p.stock;
       productEnabled.value = p.enabled === false ? "false" : "true";
       productDescription.value = p.description;
       productCapacity.value = p.capacity || "";
@@ -610,8 +609,7 @@ var Admin = (function () {
       row.className = "color-variant-row";
       row._savedImages = (variant && variant.images ? variant.images : []).filter(Boolean);
       row.innerHTML = '<label>Nombre del color<input class="variant-color" placeholder="Ej. Negro" value="' + esc((variant && variant.color) || "") + '" required></label><label>Cantidad<input class="variant-stock" type="number" min="0" value="' + Math.max(0, Number(variant && variant.stock) || 0) + '" required></label><label>Imágenes de este color<input class="variant-files" type="file" multiple accept="image/*"></label><div class="variant-summary">' + (row._savedImages.length ? row._savedImages.length + " imagen(es) guardada(s)" : "Aún no hay imágenes para este color") + '</div><button class="variant-remove" type="button" aria-label="Eliminar color">Eliminar</button>';
-      row.querySelector(".variant-stock").oninput = Admin.updateTotalStock;
-      row.querySelector(".variant-remove").onclick = function () { row.remove(); Admin.updateTotalStock(); };
+      row.querySelector(".variant-remove").onclick = function () { row.remove(); };
       host.appendChild(row);
     },
     prepareImage: function (file) {
@@ -648,12 +646,6 @@ var Admin = (function () {
           return Admin.prepareImage(file);
         })).then(function (images) { return { color: color, stock: stock, images: images }; });
       })).then(function (variants) { return variants.filter(function (variant) { return variant.color; }); });
-    },
-    updateTotalStock: function () {
-      var total = Array.from(document.querySelectorAll(".variant-stock")).reduce(function (sum, input) {
-        return sum + Math.max(0, Number(input.value) || 0);
-      }, 0);
-      productStock.value = total;
     },
     saveProduct: function (e) {
       e.preventDefault();

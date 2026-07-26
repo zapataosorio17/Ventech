@@ -32,7 +32,7 @@ async function syncProducts(products = readLocalProducts()) {
       legacy_id: Number(product.id), category_id: categoryId, name: product.name || "Producto sin nombre",
       description: product.description || "", specifications: product.specs || "", price: Number(product.price) || 0,
       discount_percent: Number(product.discount) || 0, vat_percent: Number(product.vat) || 19,
-      stock: Number(product.stock) || 0, stock_minimum: 5,
+      stock_minimum: 5,
       status: product.enabled === false ? "inhabilitado" : "activo", capacity: product.capacity || null,
       available_colors: cleanColors(product.colors), color_variants: colorVariants, images, featured: Boolean(product.featured || Number(product.discount) > 0),
     };

@@ -9,4 +9,4 @@ alter table public.products
   check (jsonb_typeof(color_variants) = 'array');
 
 comment on column public.products.color_variants is
-  'Arreglo JSON: [{"color":"Negro","images":["https://..."]}]';
+  'Arreglo JSON: [{"color":"Negro","stock":5,"images":["https://..."]}]';
