@@ -562,14 +562,22 @@ var Customer = (function () {
         }),
       };
       try {
-        var response = await fetch("http://localhost:5097/api/orders", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(request),
-        });
-        var data = await response.json();
-        if (!response.ok)
-          return alert(data.message || "No fue posible registrar el pedido.");
+        var isPublished = !/^(localhost|127\.0\.0\.1)$/i.test(location.hostname);
+        var data;
+        if (isPublished) {
+          if (!window.VentechSupabaseCheckout)
+            throw new Error("El servicio de pedidos aun no esta disponible.");
+          data = await window.VentechSupabaseCheckout.placeOrder(request, cart);
+        } else {
+          var response = await fetch("http://localhost:5097/api/orders", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(request),
+          });
+          data = await response.json();
+          if (!response.ok)
+            throw new Error(data.message || "No fue posible registrar el pedido.");
+        }
         var orders = get("orders");
         orders.unshift({
           id: data.id,
@@ -593,9 +601,11 @@ var Customer = (function () {
           "orders",
           document.querySelector('.side button[onclick*="orders"]'),
         );
-      } catch (_) {
+      } catch (error) {
         alert(
-          "No se pudo registrar el pedido. Verifica que el servicio de Ventech esté iniciado.",
+          error && error.message
+            ? error.message
+            : "No se pudo registrar el pedido. Intenta nuevamente.",
         );
       }
     },
