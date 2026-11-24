@@ -29,6 +29,8 @@ declare
   v_discount numeric;
   v_line_total numeric;
   v_subtotal numeric := 0;
+  v_discount_total numeric := 0;
+  v_vat_total numeric := 0;
   v_total numeric := 0;
 begin
   if v_user_id is null then
@@ -48,10 +50,10 @@ begin
   end if;
 
   insert into public.orders (
-    customer_id, order_number, status, subtotal, total,
+    customer_id, order_number, status, subtotal, discount_total, vat_total, total,
     department, city, address, neighborhood, payment_method
   ) values (
-    v_user_id, v_order_number, 'Procesando', 0, 0,
+    v_user_id, v_order_number, 'Procesando', 0, 0, 0, 0,
     coalesce(p_department, ''), coalesce(p_city, ''),
     coalesce(p_address, ''), coalesce(p_neighborhood, ''),
     coalesce(p_payment_method, 'PSE')
@@ -115,23 +117,32 @@ begin
 
     v_base := v_product.price * v_quantity;
     v_discount := v_base * coalesce(v_product.discount_percent, 0) / 100;
-    v_line_total := round(
-      (v_base - v_discount) * (1 + coalesce(v_product.vat_percent, 0) / 100),
+    v_line_total := v_base - v_discount;
+    v_subtotal := v_subtotal + v_base;
+    v_discount_total := v_discount_total + v_discount;
+    v_vat_total := v_vat_total + round(
+      v_line_total * coalesce(v_product.vat_percent, 0) / 100,
       2
     );
-    v_subtotal := v_subtotal + v_base;
-    v_total := v_total + v_line_total;
+    v_total := v_total + v_line_total
+      + round(v_line_total * coalesce(v_product.vat_percent, 0) / 100, 2);
 
     insert into public.order_items (
-      order_id, product_id, quantity, unit_price, vat_percent, line_total, selected_color
+      order_id, product_id, quantity, unit_price, discount_percent,
+      vat_percent, line_total, selected_color
     ) values (
       v_order_id, v_product.id, v_quantity, v_product.price,
+      coalesce(v_product.discount_percent, 0),
       coalesce(v_product.vat_percent, 0), v_line_total, v_color
     );
   end loop;
 
   update public.orders
-  set subtotal = v_subtotal, total = v_total, updated_at = now()
+  set subtotal = v_subtotal,
+      discount_total = v_discount_total,
+      vat_total = v_vat_total,
+      total = v_total,
+      updated_at = now()
   where id = v_order_id;
 
   return jsonb_build_object(
