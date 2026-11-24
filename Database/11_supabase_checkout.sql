@@ -53,7 +53,7 @@ begin
     customer_id, order_number, status, subtotal, discount_total, vat_total, total,
     department, city, address, neighborhood, payment_method
   ) values (
-    v_user_id, v_order_number, 'Procesando', 0, 0, 0, 0,
+    v_user_id, v_order_number, 'procesando', 0, 0, 0, 0,
     coalesce(p_department, ''), coalesce(p_city, ''),
     coalesce(p_address, ''), coalesce(p_neighborhood, ''),
     coalesce(p_payment_method, 'PSE')
@@ -149,7 +149,7 @@ begin
     'id', v_order_id,
     'number', v_order_number,
     'total', v_total,
-    'status', 'Procesando'
+    'status', 'procesando'
   );
 end;
 $$;

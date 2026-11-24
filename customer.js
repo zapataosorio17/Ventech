@@ -54,6 +54,17 @@ var Customer = (function () {
       if (new URLSearchParams(location.search).get("origen") === "checkout") {
         this.show("cartProfile", document.getElementById("cartNav"));
       }
+      var self = this;
+      window.addEventListener(
+        "ventech:database-ready",
+        function () {
+          var cartSection = document.getElementById("cartProfile");
+          if (cartSection && !cartSection.classList.contains("hidden")) {
+            self.cartProfile();
+          }
+        },
+        { once: true },
+      );
     },
     syncOrderStatuses: async function () {
       var currentUser = user();
@@ -584,7 +595,10 @@ var Customer = (function () {
           date: new Date().toLocaleDateString("es-CO"),
           items: cart,
           total: data.total,
-          status: data.status || "Procesando",
+          status:
+            String(data.status || "").toLowerCase() === "procesando"
+              ? "Procesando"
+              : data.status || "Procesando",
           address:
             request.department + ", " + request.city + " - " + request.address,
           payment: request.paymentMethod,
