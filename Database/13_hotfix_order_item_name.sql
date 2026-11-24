@@ -15,16 +15,16 @@ begin
     return;
   end if;
 
-  function_definition := replace(
+  function_definition := regexp_replace(
     function_definition,
-    'order_id, product_id, quantity, unit_price, discount_percent,',
-    'order_id, product_id, product_name, quantity, unit_price, discount_percent,'
+    '(order_id,\s*product_id,\s*)quantity',
+    '\1product_name, quantity'
   );
 
-  function_definition := replace(
+  function_definition := regexp_replace(
     function_definition,
-    'v_order_id, v_product.id, v_quantity, v_product.price,',
-    'v_order_id, v_product.id, v_product.name, v_quantity, v_product.price,'
+    '(v_order_id,\s*v_product\.id,\s*)v_quantity',
+    '\1v_product.name, v_quantity'
   );
 
   if position('product_name' in function_definition) = 0 then
