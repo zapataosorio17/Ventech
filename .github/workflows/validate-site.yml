@@ -1,0 +1,25 @@
+name: Validar sitio
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validar páginas y recursos
+        run: node tests/smoke.mjs
+      - name: Validar JavaScript clásico
+        run: |
+          node --check app.js
+          node --check admin-panel.js
+          node --check customer.js
+          node --check dashboard-analitico.js
+          node --check promotion.js
+          node --check sql-sync.js
