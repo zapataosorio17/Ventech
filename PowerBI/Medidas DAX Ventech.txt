@@ -1,0 +1,21 @@
+Ventas netas =
+CALCULATE(
+    SUM('vw_PBI_Ventas'[Total]),
+    'vw_PBI_Ventas'[Estado] <> "Cancelado"
+)
+
+Pedidos totales = COUNTROWS('vw_PBI_Ventas')
+
+Clientes activos = DISTINCTCOUNT('vw_PBI_Ventas'[UsuarioId])
+
+Ticket promedio = DIVIDE([Ventas netas], [Pedidos totales], 0)
+
+Pedidos cancelados = COUNTROWS('vw_PBI_Cancelados')
+
+Valor cancelado = SUM('vw_PBI_Cancelados'[Total])
+
+Productos con stock bajo =
+CALCULATE(
+    COUNTROWS('vw_PBI_Inventario'),
+    'vw_PBI_Inventario'[EstadoInventario] = "Stock bajo"
+)

@@ -1,0 +1,25 @@
+# Configuración local y credenciales
+Backend/appsettings.json
+Backend/appsettings.*.json
+!Backend/appsettings.example.json
+.env
+.env.*
+
+# Compilación .NET
+Backend/bin/
+Backend/obj/
+
+# Metadatos locales de herramientas
+.postman/
+.vs/
+.vscode/
+
+# Copias antiguas locales; la versión publicada vive en la raíz.
+JS/
+Style/
+
+# Archivos temporales
+*.user
+*.suo
+*.tmp
+*.log

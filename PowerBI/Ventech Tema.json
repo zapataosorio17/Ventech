@@ -1,0 +1,16 @@
+{
+  "name": "Ventech Profesional",
+  "dataColors": ["#0877E8", "#06B6B1", "#14213D", "#F59E0B", "#E45757", "#7C3AED"],
+  "background": "#F5F8FC",
+  "foreground": "#10213F",
+  "tableAccent": "#0877E8",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [{"show": true, "fontColor": {"solid": {"color": "#10213F"}}, "fontSize": 13, "fontFamily": "Segoe UI Semibold"}],
+        "background": [{"show": true, "color": {"solid": {"color": "#FFFFFF"}}, "transparency": 0}],
+        "border": [{"show": true, "color": {"solid": {"color": "#D9E2F0"}}, "radius": 8}]
+      }
+    }
+  }
+}
