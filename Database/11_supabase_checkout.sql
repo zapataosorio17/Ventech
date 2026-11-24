@@ -128,10 +128,10 @@ begin
       + round(v_line_total * coalesce(v_product.vat_percent, 0) / 100, 2);
 
     insert into public.order_items (
-      order_id, product_id, quantity, unit_price, discount_percent,
+      order_id, product_id, product_name, quantity, unit_price, discount_percent,
       vat_percent, line_total, selected_color
     ) values (
-      v_order_id, v_product.id, v_quantity, v_product.price,
+      v_order_id, v_product.id, v_product.name, v_quantity, v_product.price,
       coalesce(v_product.discount_percent, 0),
       coalesce(v_product.vat_percent, 0), v_line_total, v_color
     );
