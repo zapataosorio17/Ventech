@@ -56,6 +56,7 @@
 | `11_supabase_checkout.sql` | Crea el checkout transaccional actual. |
 | `12_hotfix_order_status.sql` | Corrige una función antigua que usaba `Procesando`. |
 | `13_hotfix_order_item_name.sql` | Corrige una función antigua sin `product_name`. |
+| `14_supabase_cancel_order.sql` | Cancela pedidos en Supabase y restaura inventario transaccionalmente. |
 
 Los hotfix 12 y 13 son para instalaciones existentes; no sustituyen al script consolidado 11 en instalaciones nuevas.
 

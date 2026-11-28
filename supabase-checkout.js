@@ -30,4 +30,18 @@ async function placeOrder(request, cart) {
   return data;
 }
 
-window.VentechSupabaseCheckout = { placeOrder };
+async function cancelOrder(orderId) {
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  if (userError || !userData.user) {
+    throw new Error("Tu sesion vencio. Inicia sesion nuevamente.");
+  }
+
+  const { data, error } = await supabase.rpc("cancel_order", {
+    p_order_id: Number(orderId),
+  });
+
+  if (error) throw new Error(error.message || "No fue posible cancelar el pedido.");
+  return data;
+}
+
+window.VentechSupabaseCheckout = { placeOrder, cancelOrder };

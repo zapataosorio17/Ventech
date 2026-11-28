@@ -3,10 +3,11 @@ VENTECH - PUBLICACIÓN ACADÉMICA EN CLOUDFLARE
 1. En Supabase > SQL Editor ejecuta Database/09_supabase_variantes_color.sql.
 2. Después ejecuta Database/10_supabase_stock_por_color.sql.
 3. Ejecuta Database/11_supabase_checkout.sql para habilitar pedidos y descuento transaccional de inventario.
-4. Verifica que public.products tenga color_variants (jsonb); stock se calculará automáticamente desde cada color.
-5. Publica el contenido completo de esta carpeta como sitio estático en Cloudflare Pages.
-6. El archivo de entrada es index.html.
-7. Los pagos PSE y tarjeta son simulaciones académicas; no se procesa dinero real.
-8. En Administración, cada color tiene su propia cantidad y admite hasta cinco imágenes. El catálogo cambia la galería al seleccionar el color.
+4. Ejecuta Database/14_supabase_cancel_order.sql para restaurar inventario al cancelar un pedido.
+5. Verifica que public.products tenga color_variants (jsonb); stock se calculará automáticamente desde cada color.
+6. Publica el contenido completo de esta carpeta como sitio estático en Cloudflare Pages.
+7. El archivo de entrada es index.html.
+8. Los pagos PSE y tarjeta son simulaciones académicas; no se procesa dinero real.
+9. En Administración, cada color tiene su propia cantidad y admite hasta cinco imágenes. El catálogo cambia la galería al seleccionar el color.
 
 Nota: SQL Server y la API ASP.NET se usan en desarrollo local. La publicación estática consulta el catálogo compartido de Supabase.

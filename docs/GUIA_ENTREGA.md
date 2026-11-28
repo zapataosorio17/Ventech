@@ -227,8 +227,11 @@ La versión pública utiliza, como mínimo:
 2. Ejecutar `Database/09_supabase_variantes_color.sql`.
 3. Ejecutar `Database/10_supabase_stock_por_color.sql`.
 4. Ejecutar la versión más reciente de `Database/11_supabase_checkout.sql`.
+5. Ejecutar `Database/14_supabase_cancel_order.sql`.
 
 Los archivos `12_hotfix_order_status.sql` y `13_hotfix_order_item_name.sql` existen para actualizar instalaciones antiguas. En una instalación nueva y actualizada, `11_supabase_checkout.sql` ya contiene ambas correcciones.
+
+`14_supabase_cancel_order.sql` crea la cancelación transaccional: solo el propietario puede cancelar un pedido en estado `procesando`; la función restaura el stock general o el de la variante de color y cambia el estado a `cancelado` en la misma transacción. Una segunda cancelación es rechazada para impedir duplicar inventario.
 
 ### 10.3 Verificación de la función
 

@@ -248,6 +248,37 @@ var Customer = (function () {
         return;
       }
       if (!confirm("¿Deseas cancelar este pedido?")) return;
+      var isPublished = !/^(localhost|127\.0\.0\.1)$/i.test(location.hostname);
+      if (isPublished) {
+        try {
+          if (
+            !window.VentechSupabaseCheckout ||
+            typeof window.VentechSupabaseCheckout.cancelOrder !== "function"
+          ) {
+            throw new Error("El servicio de cancelaciones aun no esta disponible.");
+          }
+          var canceled = await window.VentechSupabaseCheckout.cancelOrder(id);
+          o.status =
+            String(canceled.status || "").toLowerCase() === "cancelado"
+              ? "Cancelado"
+              : canceled.status || "Cancelado";
+          set("orders", a);
+          alert(
+            canceled.message ||
+              "Pedido cancelado. El inventario fue restaurado.",
+          );
+          this.orders();
+          this.overview();
+          this.invoices();
+        } catch (error) {
+          alert(
+            error && error.message
+              ? error.message
+              : "No fue posible cancelar el pedido.",
+          );
+        }
+        return;
+      }
       var cancelLocal = function (message) {
         var ps = products();
         (o.items || []).forEach(function (x) {
