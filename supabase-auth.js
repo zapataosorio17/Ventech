@@ -11,6 +11,8 @@ const RECOVERY_REQUESTED =
   new URLSearchParams(location.search).get("recovery") === "1" ||
   new URLSearchParams(location.hash.replace(/^#/, "")).get("type") ===
     "recovery";
+const NEXT_PAGE = new URLSearchParams(location.search).get("next") || "";
+const EMPLOYEE_MODE = /^(?:administracion|admin)(?:\.html)?$/i.test(NEXT_PAGE);
 
 function authMessage(error) {
   const code = String(error?.code || "").toLowerCase();
@@ -101,8 +103,17 @@ async function login(event) {
   });
   if (error || !data.user) return alert(error?.message || "No fue posible iniciar sesión.");
   try {
-    await saveSession(data.user);
-    location.href = new URLSearchParams(location.search).get("next") || "mi-cuenta.html";
+    const profile = await saveSession(data.user);
+    if (
+      EMPLOYEE_MODE &&
+      !["administrador", "supervisor", "empleado"].includes(profile.role)
+    ) {
+      localStorage.removeItem(USER_KEY);
+      await supabase.auth.signOut();
+      alert("Esta cuenta es de cliente y no tiene acceso al panel de empleados.");
+      return;
+    }
+    location.href = NEXT_PAGE || "mi-cuenta.html";
   } catch (reason) {
     await supabase.auth.signOut();
     alert(reason instanceof Error ? reason.message : "No fue posible validar la cuenta.");
@@ -180,6 +191,18 @@ window.VT.login = login;
 window.VT.recover = recover;
 window.VT.updatePassword = updatePassword;
 window.VT.showLogin = showLogin;
+
+if (EMPLOYEE_MODE) {
+  document.title = "Ventech | Acceso para empleados";
+  document.getElementById("authEyebrow").textContent = "ACCESO INTERNO VENTECH";
+  document.getElementById("authTitle").textContent =
+    "Administra productos, inventario y ventas.";
+  document.getElementById("authDescription").textContent =
+    "Ingreso exclusivo para personal autorizado de Ventech.";
+  document.getElementById("registerTab").classList.add("hide");
+  document.getElementById("employeeLoginNote").classList.remove("hide");
+  showPanel("login");
+}
 
 supabase.auth.onAuthStateChange((event) => {
   if (

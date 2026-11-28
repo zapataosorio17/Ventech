@@ -355,6 +355,8 @@ http://localhost:5097/api/health
 4. Abrir `administracion.html`.
 5. Comprobar productos, ventas, usuarios e inventario.
 
+El enlace **Acceso para empleados** abre la autenticación en modo interno. En ese modo no se ofrece registro público y, antes de redirigir, se exige uno de los roles `administrador`, `supervisor` o `empleado`. Una cuenta con rol `cliente` se cierra y recibe un mensaje de acceso denegado.
+
 Las modificaciones del catálogo se sincronizan con Supabase. Antes de una demostración se recomienda utilizar productos de prueba y registrar el inventario inicial.
 
 ## 15. Publicación en Cloudflare Pages

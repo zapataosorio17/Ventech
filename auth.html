@@ -10,9 +10,9 @@
     <a class="logo floating" href="Ventech.html">Ven<span>Tech</span></a>
     <main class="authbox">
       <div>
-        <p class="tag">TU CUENTA VENTECH</p>
-        <h1>Compra, factura y rastrea tus pedidos.</h1>
-        <p>
+        <p class="tag" id="authEyebrow">TU CUENTA VENTECH</p>
+        <h1 id="authTitle">Compra, factura y rastrea tus pedidos.</h1>
+        <p id="authDescription">
           La cuenta es necesaria para tu historial de compras y datos de
           entrega.
         </p>
@@ -20,7 +20,7 @@
       <section class="card">
         <div class="tabs" id="authTabs">
           <button type="button" onclick="VT.auth('login')">Iniciar sesión</button
-          ><button type="button" onclick="VT.auth('register')">Crear cuenta</button>
+          ><button id="registerTab" type="button" onclick="VT.auth('register')">Crear cuenta</button>
         </div>
         <form id="login" onsubmit="VT.login(event)">
           <label>Correo<input type="email" required /></label
@@ -33,6 +33,10 @@
               return false;
             "
             >Recuperar contraseña</a
+          ><p id="employeeLoginNote" class="auth-help hide">
+            Usa la cuenta interna asignada por el administrador. Las cuentas de
+            clientes no tienen acceso al panel.
+          </p
           ><button class="button full">Ingresar</button>
         </form>
         <form id="register" class="hide" onsubmit="VT.register(event)">
@@ -78,7 +82,7 @@
       </section>
     </main>
     <script src="app.js?v=18"></script>
-    <script type="module" src="supabase-auth.js?v=4"></script>
+    <script type="module" src="supabase-auth.js?v=5"></script>
     <script>
       if (new URLSearchParams(location.search).get("modo") === "registro")
         VT.auth("register");
