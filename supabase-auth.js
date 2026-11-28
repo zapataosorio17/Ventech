@@ -3,9 +3,14 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const supabase = createClient(
   "https://yatuqlksqovgkczzumzo.supabase.co",
   "sb_publishable__KIj1REr4hQXJeoAlYu1lA_1tLL6yDn",
+  { auth: { detectSessionInUrl: true, flowType: "implicit" } },
 );
 const USER_KEY = "vt_user";
 const RECOVERY_SENT_KEY = "vt_recovery_sent_at";
+const RECOVERY_REQUESTED =
+  new URLSearchParams(location.search).get("recovery") === "1" ||
+  new URLSearchParams(location.hash.replace(/^#/, "")).get("type") ===
+    "recovery";
 
 function authMessage(error) {
   const code = String(error?.code || "").toLowerCase();
@@ -127,7 +132,7 @@ async function recover(event) {
   status.textContent = "Enviando enlace...";
   status.classList.remove("error", "success");
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${location.origin}/auth.html`,
+    redirectTo: `${location.origin}/auth.html?recovery=1`,
   });
   button.disabled = false;
   if (error) {
@@ -177,10 +182,29 @@ window.VT.updatePassword = updatePassword;
 window.VT.showLogin = showLogin;
 
 supabase.auth.onAuthStateChange((event) => {
-  if (event === "PASSWORD_RECOVERY") showPanel("resetPassword");
+  if (
+    event === "PASSWORD_RECOVERY" ||
+    (RECOVERY_REQUESTED && event === "SIGNED_IN")
+  ) {
+    showPanel("resetPassword");
+  }
+});
+
+supabase.auth.getSession().then(({ data }) => {
+  if (!RECOVERY_REQUESTED) return;
+  if (data.session) {
+    showPanel("resetPassword");
+    return;
+  }
+  showPanel("recover");
+  const status = document.getElementById("recoverStatus");
+  status.textContent =
+    "El enlace de recuperación venció o no es válido. Solicita uno nuevo.";
+  status.classList.add("error");
 });
 
 supabase.auth.getUser().then(async ({ data }) => {
+  if (RECOVERY_REQUESTED) return;
   if (data.user) {
     try { await saveSession(data.user); } catch (_) { /* La validación se realiza al ingresar. */ }
   }

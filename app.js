@@ -1,3 +1,16 @@
+(function redirectPasswordRecovery() {
+  var hash = new URLSearchParams(location.hash.replace(/^#/, ""));
+  var query = new URLSearchParams(location.search);
+  if (
+    !/\/auth(?:\.html)?\/?$/i.test(location.pathname) &&
+    (hash.get("type") === "recovery" || query.get("type") === "recovery")
+  ) {
+    var target = new URL("auth.html?recovery=1", location.origin + "/");
+    target.hash = location.hash;
+    location.replace(target.toString());
+  }
+})();
+
 var VT = (function () {
   var key = "vt_";
   function get(n) {

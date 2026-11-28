@@ -497,6 +497,10 @@ El proveedor de correo integrado de Supabase es únicamente para pruebas y permi
 
 El límite se comparte entre recuperación, confirmación de registro y demás correos de autenticación. Para una demostración académica sin correo se puede desactivar temporalmente **Confirm email** en **Authentication → Sign In / Providers → Email**. Esto permite crear cuentas nuevas sin enviar confirmación, pero reduce la seguridad y no se recomienda para producción.
 
+### El enlace de recuperación abre la página principal
+
+Configurar en **Authentication → URL Configuration** el Site URL `https://ventech-ew3.pages.dev` y agregar `https://ventech-ew3.pages.dev/auth.html?recovery=1` a Redirect URLs. La aplicación también detecta tokens de recuperación que lleguen por error a `/Ventech` y los redirige a la pantalla de contraseña conservando el token.
+
 ### Producto mostrado como `$0`
 
 - recargar después de que el catálogo termine de sincronizar;
