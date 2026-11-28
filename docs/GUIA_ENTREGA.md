@@ -495,6 +495,8 @@ No deben aparecer contraseñas, tokens, claves secretas ni información personal
 
 El proveedor de correo integrado de Supabase es únicamente para pruebas y permite muy pocos mensajes por hora. Se debe esperar a que el límite se restablezca o configurar SMTP propio en **Authentication → Emails → SMTP Settings**. Después de configurar SMTP se puede revisar **Authentication → Rate Limits**. La aplicación bloquea solicitudes repetidas durante 60 segundos, pero no puede eliminar el límite impuesto por el proveedor.
 
+El límite se comparte entre recuperación, confirmación de registro y demás correos de autenticación. Para una demostración académica sin correo se puede desactivar temporalmente **Confirm email** en **Authentication → Sign In / Providers → Email**. Esto permite crear cuentas nuevas sin enviar confirmación, pero reduce la seguridad y no se recomienda para producción.
+
 ### Producto mostrado como `$0`
 
 - recargar después de que el catálogo termine de sincronizar;

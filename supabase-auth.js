@@ -69,13 +69,16 @@ async function register(event) {
   event.preventDefault();
   const inputs = event.target.querySelectorAll("input");
   if (inputs[5].value !== inputs[6].value) return alert("Las contraseñas no coinciden.");
+  const button = event.target.querySelector("button[type='submit'], button:not([type])");
+  if (button) button.disabled = true;
   const fullName = `${inputs[0].value} ${inputs[1].value}`.trim();
   const { data, error } = await supabase.auth.signUp({
     email: inputs[4].value.trim(),
     password: inputs[5].value,
     options: { data: { full_name: fullName, document: inputs[2].value, phone: inputs[3].value } },
   });
-  if (error) return alert(error.message);
+  if (button) button.disabled = false;
+  if (error) return alert(authMessage(error));
   if (!data.session) {
     alert("Cuenta creada. Revisa tu correo y confirma tu cuenta antes de ingresar.");
     return;
