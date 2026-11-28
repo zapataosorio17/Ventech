@@ -70,6 +70,41 @@ var Customer = (function () {
       var currentUser = user();
       if (!currentUser || !currentUser.email) return;
       try {
+        var isPublished = !/^(localhost|127\.0\.0\.1)$/i.test(location.hostname);
+        if (isPublished) {
+          if (
+            !window.VentechSupabaseCheckout ||
+            typeof window.VentechSupabaseCheckout.getOrderStatuses !== "function"
+          )
+            return;
+          var publishedOrders =
+            await window.VentechSupabaseCheckout.getOrderStatuses();
+          var storedOrders = get("orders"),
+            publishedChanged = false;
+          publishedOrders.forEach(function (remote) {
+            var local = storedOrders.find(function (order) {
+              return String(order.id) === String(remote.id);
+            });
+            if (!local) return;
+            var remoteStatus = String(remote.status || "").toLowerCase();
+            var displayStatus =
+              remoteStatus === "procesando"
+                ? "Procesando"
+                : remoteStatus === "en_camino"
+                  ? "En camino"
+                  : remoteStatus === "entregado"
+                    ? "Entregado"
+                    : remoteStatus === "cancelado"
+                      ? "Cancelado"
+                      : remote.status;
+            if (local.status !== displayStatus) {
+              local.status = displayStatus;
+              publishedChanged = true;
+            }
+          });
+          if (publishedChanged) set("orders", storedOrders);
+          return;
+        }
         var response = await fetch(
           "http://localhost:5097/api/customers/" +
             encodeURIComponent(currentUser.email) +

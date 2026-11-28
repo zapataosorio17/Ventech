@@ -44,4 +44,25 @@ async function cancelOrder(orderId) {
   return data;
 }
 
-window.VentechSupabaseCheckout = { placeOrder, cancelOrder };
+async function getOrderStatuses() {
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  if (userError || !userData.user) return [];
+
+  const { data, error } = await supabase
+    .from("orders")
+    .select("id,status")
+    .eq("customer_id", userData.user.id);
+
+  if (error) throw new Error(error.message || "No fue posible actualizar los pedidos.");
+  return data || [];
+}
+
+window.VentechSupabaseCheckout = { placeOrder, cancelOrder, getOrderStatuses };
+
+if (window.Customer && typeof window.Customer.syncOrderStatuses === "function") {
+  window.Customer.syncOrderStatuses().then(() => {
+    window.Customer.overview();
+    window.Customer.orders();
+    window.Customer.invoices();
+  }).catch(() => {});
+}
