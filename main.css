@@ -412,6 +412,39 @@ dialog::backdrop {
   font-weight: bold;
   cursor: pointer;
 }
+
+.auth-help {
+  margin: 0 0 16px;
+  color: #536b91;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.auth-status {
+  min-height: 20px;
+  margin: 8px 0;
+  color: #536b91;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.auth-status.error {
+  color: #b42318;
+}
+
+.auth-status.success {
+  color: #16794c;
+}
+
+.auth-back {
+  width: 100%;
+  margin-top: 10px;
+  border: 0;
+  background: transparent;
+  color: #075fd8;
+  cursor: pointer;
+  text-decoration: underline;
+}
 form label {
   display: block;
   margin-top: 12px;

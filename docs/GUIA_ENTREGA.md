@@ -491,6 +491,10 @@ No deben aparecer contraseñas, tokens, claves secretas ni información personal
 - ejecutar la versión actual de `11_supabase_checkout.sql`;
 - para una instalación antigua puede utilizarse `13_hotfix_order_item_name.sql`.
 
+### Error `email rate limit exceeded`
+
+El proveedor de correo integrado de Supabase es únicamente para pruebas y permite muy pocos mensajes por hora. Se debe esperar a que el límite se restablezca o configurar SMTP propio en **Authentication → Emails → SMTP Settings**. Después de configurar SMTP se puede revisar **Authentication → Rate Limits**. La aplicación bloquea solicitudes repetidas durante 60 segundos, pero no puede eliminar el límite impuesto por el proveedor.
+
 ### Producto mostrado como `$0`
 
 - recargar después de que el catálogo termine de sincronizar;
