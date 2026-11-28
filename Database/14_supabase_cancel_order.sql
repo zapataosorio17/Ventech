@@ -105,3 +105,15 @@ grant execute on function public.cancel_order(bigint) to authenticated;
 
 comment on function public.cancel_order(bigint) is
   'Cancela un pedido procesando del usuario autenticado y restaura su inventario una sola vez.';
+
+-- Solicita a la API REST de Supabase que reconozca la función inmediatamente.
+notify pgrst, 'reload schema';
+
+-- La consulta debe devolver cancel_order(bigint), execute_authenticated = true.
+select
+  to_regprocedure('public.cancel_order(bigint)')::text as funcion,
+  has_function_privilege(
+    'authenticated',
+    'public.cancel_order(bigint)',
+    'EXECUTE'
+  ) as execute_authenticated;
