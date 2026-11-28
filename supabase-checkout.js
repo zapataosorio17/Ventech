@@ -44,20 +44,23 @@ async function cancelOrder(orderId) {
   return data;
 }
 
-async function getOrderStatuses() {
+async function getOrders() {
   const { data: userData, error: userError } = await supabase.auth.getUser();
   if (userError || !userData.user) return [];
 
   const { data, error } = await supabase
     .from("orders")
-    .select("id,status")
-    .eq("customer_id", userData.user.id);
+    .select(
+      "id,created_at,status,total,department,city,address,payment_method,order_items(product_id,product_name,quantity,selected_color)",
+    )
+    .eq("customer_id", userData.user.id)
+    .order("created_at", { ascending: false });
 
   if (error) throw new Error(error.message || "No fue posible actualizar los pedidos.");
   return data || [];
 }
 
-window.VentechSupabaseCheckout = { placeOrder, cancelOrder, getOrderStatuses };
+window.VentechSupabaseCheckout = { placeOrder, cancelOrder, getOrders };
 
 if (window.Customer && typeof window.Customer.syncOrderStatuses === "function") {
   window.Customer.syncOrderStatuses().then(() => {

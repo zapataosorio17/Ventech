@@ -503,6 +503,10 @@ El límite se comparte entre recuperación, confirmación de registro y demás c
 - comprobar `sql-sync.js`;
 - verificar que el producto del carrito todavía existe en Supabase.
 
+### Una cuenta nueva muestra pedidos de otra cuenta
+
+Las versiones actuales guardan la caché de pedidos con una clave separada por ID de usuario y reconstruyen el historial desde Supabase usando `customer_id`. Después de actualizar, recarga `mi-cuenta.html`; la caché global antigua `vt_orders` se elimina únicamente cuando la sincronización remota termina correctamente.
+
 ### Backend no inicia
 
 - revisar `appsettings.json`;

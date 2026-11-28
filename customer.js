@@ -1,10 +1,17 @@
 var Customer = (function () {
   var k = "vt_";
+  function storageKey(n) {
+    if (n !== "orders") return k + n;
+    var current = JSON.parse(localStorage.getItem(k + "user") || "null");
+    var identity = current && (current.id || current.email);
+    if (!identity) return k + "orders_anonymous";
+    return k + "orders_" + encodeURIComponent(String(identity).toLowerCase());
+  }
   function get(n) {
-    return JSON.parse(localStorage.getItem(k + n) || "[]");
+    return JSON.parse(localStorage.getItem(storageKey(n)) || "[]");
   }
   function set(n, v) {
-    localStorage.setItem(k + n, JSON.stringify(v));
+    localStorage.setItem(storageKey(n), JSON.stringify(v));
   }
   function user() {
     return JSON.parse(localStorage.getItem(k + "user") || "null");
@@ -37,7 +44,7 @@ var Customer = (function () {
         var p = products().find(function (y) {
           return y.id === x.id;
         });
-        return x.qty + " x " + (p ? p.name : "Producto");
+        return x.qty + " x " + (p ? p.name : x.name || "Producto");
       })
       .join(", ");
   }
@@ -74,18 +81,11 @@ var Customer = (function () {
         if (isPublished) {
           if (
             !window.VentechSupabaseCheckout ||
-            typeof window.VentechSupabaseCheckout.getOrderStatuses !== "function"
+            typeof window.VentechSupabaseCheckout.getOrders !== "function"
           )
             return;
-          var publishedOrders =
-            await window.VentechSupabaseCheckout.getOrderStatuses();
-          var storedOrders = get("orders"),
-            publishedChanged = false;
-          publishedOrders.forEach(function (remote) {
-            var local = storedOrders.find(function (order) {
-              return String(order.id) === String(remote.id);
-            });
-            if (!local) return;
+          var publishedOrders = await window.VentechSupabaseCheckout.getOrders();
+          var synchronizedOrders = publishedOrders.map(function (remote) {
             var remoteStatus = String(remote.status || "").toLowerCase();
             var displayStatus =
               remoteStatus === "procesando"
@@ -96,13 +96,28 @@ var Customer = (function () {
                     ? "Entregado"
                     : remoteStatus === "cancelado"
                       ? "Cancelado"
-                      : remote.status;
-            if (local.status !== displayStatus) {
-              local.status = displayStatus;
-              publishedChanged = true;
-            }
+                      : remote.status || "Procesando";
+            return {
+              id: remote.id,
+              date: new Date(remote.created_at).toLocaleDateString("es-CO"),
+              items: (remote.order_items || []).map(function (item) {
+                return {
+                  id: Number(item.product_id),
+                  qty: Number(item.quantity),
+                  color: item.selected_color || null,
+                  name: item.product_name || "Producto",
+                };
+              }),
+              total: Number(remote.total) || 0,
+              status: displayStatus,
+              address:
+                [remote.department, remote.city].filter(Boolean).join(", ") +
+                (remote.address ? " - " + remote.address : ""),
+              payment: remote.payment_method || "Pago registrado",
+            };
           });
-          if (publishedChanged) set("orders", storedOrders);
+          set("orders", synchronizedOrders);
+          localStorage.removeItem(k + "orders");
           return;
         }
         var response = await fetch(
